@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { posts } from "@/lib/posts";
+import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
 
 const post = posts.find((p) => p.slug === "ship-while-sleep")!;
 const SITE = "https://ship.alonsogrimaldo.com/";
@@ -8,8 +9,12 @@ const SITE = "https://ship.alonsogrimaldo.com/";
 export const metadata: Metadata = {
   title: post.title,
   description: post.description,
+  alternates: { canonical: `/posts/${post.slug}` },
   openGraph: {
     type: "article",
+    publishedTime: post.date,
+    authors: ["Alonso Grimaldo"],
+    tags: post.tags,
     title: post.title,
     description: post.description,
     url: `https://alonsogrimaldo.com/posts/${post.slug}`,
@@ -20,6 +25,7 @@ export default function ShipWhileSleep() {
   return (
     <main>
       <article>
+        <JsonLd data={blogPostJsonLd(post)} />
         <div className="wrap">
           <div className="meta">
             {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min

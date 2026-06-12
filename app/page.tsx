@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { posts } from "@/lib/posts";
+import { JsonLd, personJsonLd, websiteJsonLd } from "@/lib/jsonld";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const experience = [
   {
@@ -36,6 +42,7 @@ const experience = [
 export default function Home() {
   return (
     <main>
+      <JsonLd data={[personJsonLd, websiteJsonLd]} />
       <header className="hero">
         <div className="wrap hero-grid">
           <div>
