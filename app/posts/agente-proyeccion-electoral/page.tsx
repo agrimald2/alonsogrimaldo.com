@@ -34,14 +34,14 @@ export default function AgenteProyeccionElectoral() {
           <figure className="post-fig">
             <Image
               src="/img/post-elecciones.jpg"
-              alt="Roberto Sánchez y Keiko Fujimori, candidatos de la segunda vuelta presidencial de Perú 2026"
-              width={1062}
-              height={700}
+              alt="Resultados ONPE al 97.580% de actas: Roberto Sánchez (Juntos por el Perú) 50.040%, Keiko Fujimori (Fuerza Popular) 49.960% — diferencia de ~41 mil votos"
+              width={1400}
+              height={980}
               priority
             />
             <figcaption>
-              Roberto Sánchez (foto: Ministerio de Comercio Exterior y Turismo, CC BY
-              2.0) y Keiko Fujimori (foto: La Prensa Gráfica, CC BY 3.0), vía Wikimedia
+              Datos: ONPE al 97.580% de actas. Fotos: Roberto Sánchez (Mincetur, CC BY
+              2.0) y Keiko Fujimori (La Prensa Gráfica, CC BY 3.0), vía Wikimedia
               Commons.
             </figcaption>
           </figure>
