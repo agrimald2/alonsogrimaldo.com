@@ -27,7 +27,7 @@ const experience = [
   {
     role: "AI Engineer Manager",
     org: "Tiendanube / Nuvemshop",
-    logo: null,
+    logo: "/logos/tiendanube.png",
     period: "2023 — 2025",
     desc: "EM de Chat Nube, el asistente virtual con IA para las tiendas de la plataforma.",
   },
