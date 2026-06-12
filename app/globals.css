@@ -171,6 +171,49 @@ h2 {
   font-size: 16px;
 }
 
+/* experience */
+.xp {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--acc);
+  border-radius: 12px;
+  padding: 16px 20px;
+  background: var(--card);
+  margin-top: 14px;
+}
+
+.xp-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.xp h3 {
+  margin: 0;
+  font-size: 16.5px;
+  letter-spacing: -0.2px;
+}
+
+.xp .org {
+  background: linear-gradient(90deg, var(--acc), var(--acc2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.xp .period {
+  font: 600 12px/1 var(--mono);
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+.xp p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
 /* post cards */
 .post-card {
   display: block;

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { posts } from "@/lib/posts";
 
 const post = posts.find((p) => p.slug === "ship-while-sleep")!;
-const SITE = "https://ship-while-sleep.netlify.app/";
+const SITE = "https://ship.alonsogrimaldo.com/";
 
 export const metadata: Metadata = {
   title: post.title,
@@ -33,7 +33,7 @@ export default function ShipWhileSleep() {
               📐 Armé un <b>sitio interactivo</b> que explica el patrón completo, con
               terminales y diagramas:{" "}
               <a href={SITE} target="_blank" rel="noopener">
-                ship-while-sleep.netlify.app
+                ship.alonsogrimaldo.com
               </a>
             </p>
           </div>
