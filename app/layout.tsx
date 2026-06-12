@@ -1,6 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Fraunces, Newsreader, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-display",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500"],
+  variable: "--font-text",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-code",
+});
 
 const LINKEDIN = "https://www.linkedin.com/in/alonso-grimaldo-3a2917186/";
 
@@ -35,12 +55,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html
+      lang="es"
+      className={`${fraunces.variable} ${newsreader.variable} ${jetbrains.variable}`}
+    >
       <body>
         <nav>
           <div className="wrap">
             <Link className="brand" href="/">
-              alonso<b>grimaldo</b>
+              Alonso Grimaldo<span className="dot">.</span>
             </Link>
             <Link className="link" href="/#posts">
               Posts
@@ -53,7 +76,8 @@ export default function RootLayout({
         {children}
         <footer>
           <div className="wrap">
-            Alonso Grimaldo · construyendo con agentes ·{" "}
+            Alonso Grimaldo<span className="dot">.</span> · escribo sobre construir
+            con agentes ·{" "}
             <a href={LINKEDIN} target="_blank" rel="noopener">
               LinkedIn
             </a>

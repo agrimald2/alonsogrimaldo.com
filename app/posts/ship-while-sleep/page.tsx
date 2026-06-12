@@ -30,7 +30,7 @@ export default function ShipWhileSleep() {
 
           <div className="callout">
             <p>
-              📐 Armé un <b>sitio interactivo</b> que explica el patrón completo, con
+              Armé un <b>sitio interactivo</b> que explica el patrón completo, con
               terminales y diagramas:{" "}
               <a href={SITE} target="_blank" rel="noopener">
                 ship.alonsogrimaldo.com
