@@ -305,6 +305,12 @@ h2 {
   margin: 30px 0 6px;
 }
 
+.post-fig figcaption {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
+
 .xp-logo {
   height: 18px;
   width: auto;

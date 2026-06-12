@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getPost } from "@/lib/posts";
 
 const post = getPost("agente-proyeccion-electoral");
@@ -29,6 +30,21 @@ export default function AgenteProyeccionElectoral() {
             Así que le pedí a un agente de AI que mirara los datos de verdad — y la
             respuesta cambió todo.
           </p>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/post-elecciones.jpg"
+              alt="Roberto Sánchez y Keiko Fujimori, candidatos de la segunda vuelta presidencial de Perú 2026"
+              width={1062}
+              height={700}
+              priority
+            />
+            <figcaption>
+              Roberto Sánchez (foto: Ministerio de Comercio Exterior y Turismo, CC BY
+              2.0) y Keiko Fujimori (foto: La Prensa Gráfica, CC BY 3.0), vía Wikimedia
+              Commons.
+            </figcaption>
+          </figure>
 
           <div className="callout">
             <p>

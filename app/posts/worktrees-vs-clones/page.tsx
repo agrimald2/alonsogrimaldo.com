@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getPost } from "@/lib/posts";
 
 const post = getPost("worktrees-vs-clones");
@@ -29,6 +30,16 @@ export default function WorktreesVsClones() {
             Respuesta corta: con un agente, worktrees andan. Con varios agentes
             autónomos en paralelo, se rompen — y se rompen feo.
           </p>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/post-worktrees.jpg"
+              alt="Ilustración en tinta: de un árbol madre bajo campana de vidrio, un jardinero toma esquejes y los planta en macetas separadas atendidas por pequeños robots; al fondo, varios jardineros forcejean con un solo árbol enredado"
+              width={1400}
+              height={933}
+              priority
+            />
+          </figure>
 
           <h2>El día que entendí el problema</h2>
           <p>
