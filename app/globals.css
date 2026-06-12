@@ -367,6 +367,26 @@ article li {
   margin: 10px 0;
 }
 
+article pre {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  border-radius: 10px;
+  padding: 18px 22px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.65;
+  margin: 26px 0;
+}
+
+article pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
 article code {
   font-family: var(--mono);
   font-size: 0.82em;

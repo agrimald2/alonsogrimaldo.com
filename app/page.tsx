@@ -133,7 +133,9 @@ export default function Home() {
             <Link key={post.slug} className="post-card" href={`/posts/${post.slug}`}>
               <h3>{post.title}</h3>
               <p>{post.description}</p>
-              <div className="meta">{post.dateLabel}</div>
+              <div className="meta">
+                {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
+              </div>
             </Link>
           ))}
         </div>

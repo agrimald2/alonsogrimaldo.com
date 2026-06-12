@@ -21,7 +21,9 @@ export default function ShipWhileSleep() {
     <main>
       <article>
         <div className="wrap">
-          <div className="meta">{post.dateLabel} · workflow · agentes</div>
+          <div className="meta">
+            {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
+          </div>
           <h1>Ship while you sleep</h1>
           <p className="lead">
             Dejá objetivos grandes corriendo y volvé a algo <b>99% prod-ready</b>. Este
@@ -136,6 +138,24 @@ export default function ShipWhileSleep() {
             <li>Criterios de aceptación testeables.</li>
             <li>Convenciones del repo.</li>
           </ul>
+          <pre>
+            <code>{`## Síntoma
+checkout duplica el descuento con 2 cupones
+
+## Causa raíz (verificada)
+web/lib/cart.ts:142 — recalcula el total
+sin limpiar el descuento previo
+
+## Fix + constraints
+acumular en una pasada.
+NO montes un sistema de promos nuevo;
+reutilizá applyDiscount()
+
+## Criterios de aceptación
+- 2 cupones → 1 descuento c/u
+- test:e2e checkout verde`}</code>
+          </pre>
+
           <p>
             Y lo grande lo parto en <b>frentes disjuntos</b> — archivos que no se cruzan
             — para correrlos en paralelo, cada uno con su propio loop de verificación.
