@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s · Alonso Grimaldo",
   },
   description:
-    "Founding Engineer en 021, founder de LaTech y ex-CTO de VICI (adquirida por Tiendanube). Construyo producto con agentes autónomos y escribo sobre cómo trabajo.",
+    "Founding Engineer en 021, founder de LaTech y CTO de VICI (adquirida por Tiendanube). Construyo producto con agentes autónomos y escribo sobre cómo trabajo.",
   authors: [{ name: "Alonso Grimaldo", url: LINKEDIN }],
   openGraph: {
     type: "website",

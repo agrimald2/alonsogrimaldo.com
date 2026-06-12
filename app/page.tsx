@@ -46,7 +46,7 @@ export default function Home() {
               Construyo producto <span className="g">con agentes</span>.
             </h1>
             <p className="sub">
-              Founding Engineer en <b>021</b>, founder de <b>LaTech</b> y ex-CTO de{" "}
+              Founding Engineer en <b>021</b>, founder de <b>LaTech</b> y CTO de{" "}
               <b>VICI</b> (adquirida por Tiendanube). Más de 7 años digitalizando
               negocios con IA — hoy, diseñando workflows donde los agentes{" "}
               <b>iteran, prueban y se corrigen solos</b>. Acá escribo lo que voy
