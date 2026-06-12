@@ -30,6 +30,20 @@ export default function AgenteProyeccionElectoral() {
             respuesta cambió todo.
           </p>
 
+          <div className="callout">
+            <p>
+              La página interactiva está viva: podés mover los supuestos y ver cómo
+              cambia la proyección en{" "}
+              <a
+                href="https://elecciones.alonsogrimaldo.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                elecciones.alonsogrimaldo.com
+              </a>
+            </p>
+          </div>
+
           <h2>El pedido</h2>
           <p>
             Una sola instrucción: scrapear la <b>API oficial de la ONPE</b>, región por
@@ -73,8 +87,16 @@ export default function AgenteProyeccionElectoral() {
             <li>armó el modelo de proyección por zona,</li>
             <li>lo validó por dos vías independientes (Python y Excel),</li>
             <li>
-              y publicó una <b>página interactiva</b> donde cualquiera puede mover los
-              supuestos y ver cómo cambia la proyección.
+              y publicó una{" "}
+              <a
+                href="https://elecciones.alonsogrimaldo.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                página interactiva
+              </a>{" "}
+              donde cualquiera puede mover los supuestos y ver cómo cambia la
+              proyección.
             </li>
           </ul>
           <p>
