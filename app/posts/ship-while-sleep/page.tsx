@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { posts } from "@/lib/posts";
 
 const post = posts.find((p) => p.slug === "ship-while-sleep")!;
@@ -27,6 +28,16 @@ export default function ShipWhileSleep() {
             es el patrón que usamos en 021 para trabajar con agentes autónomos — y las
             respuestas a las preguntas que más me hicieron cuando lo compartí.
           </p>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/post-ship-while-sleep.jpg"
+              alt="Ilustración en tinta: una persona duerme en una hamaca mientras tres pequeños robots trabajan aislados en sus escritorios; uno revisa con lupa, otro sella un visto bueno, otro acarrea papeles"
+              width={1400}
+              height={933}
+              priority
+            />
+          </figure>
 
           <div className="callout">
             <p>

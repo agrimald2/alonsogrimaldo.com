@@ -247,6 +247,50 @@ h2 {
   color: var(--ink-3);
 }
 
+/* figures */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 28px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+.about-fig {
+  margin: 6px 0 0;
+}
+
+.about-fig img,
+.post-fig img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.post-fig {
+  margin: 30px 0 6px;
+}
+
+.xp-logo {
+  height: 18px;
+  width: auto;
+  vertical-align: -3px;
+  margin-right: 9px;
+  filter: grayscale(1) brightness(0.4) sepia(0.18);
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-fig {
+    max-width: 320px;
+  }
+}
+
 /* article */
 article {
   padding: 64px 0 24px;

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     url: "https://alonsogrimaldo.com",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Alonso Grimaldo",
     description:
       "Construyo producto con agentes autónomos. Workflows, agentes y aprendizajes.",
