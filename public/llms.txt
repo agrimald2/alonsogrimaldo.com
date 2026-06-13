@@ -1,0 +1,22 @@
+# Alonso Grimaldo
+
+> AI Engineer y founder peruano. Founding Engineer en 021, founder de LaTech (Latin American Tech Solutions) y ex-CTO de VICI (startup adquirida por Tiendanube). Más de 7 años construyendo producto con IA. Escribe sobre workflows de agentes autónomos, cómo estructurar agentes de código para que iteren, prueben y se corrijan solos, y lo que aprende construyendo en producción.
+
+## Posts
+
+- [Ship while you sleep: el workflow de agentes autónomos que usamos en 021](https://alonsogrimaldo.com/posts/ship-while-sleep): Patrón para dejar objetivos grandes corriendo y volver a algo 99% prod-ready. Workspaces aislados por tarea, bloques de puertos sin cruce, y un agente de E2E que encuentra la causa raíz y se auto-corrige hasta 3 corridas limpias seguidas.
+- [¿Worktrees o clones? Lo que aprendí corriendo agentes en paralelo](https://alonsogrimaldo.com/posts/worktrees-vs-clones): Por qué los git worktrees fallan con múltiples agentes autónomos (comparten el mismo .git) y por qué los clones reales desde un mirror bare local son superiores. Incluye la receta completa y cuándo los worktrees siguen ganando.
+- [Me mataba la ansiedad, así que puse a mi agente a proyectar la segunda vuelta](https://alonsogrimaldo.com/posts/agente-proyeccion-electoral): Cómo un agente scrapeó la API oficial de la ONPE región por región y proyectó las elecciones de Perú 2026 por zona en vez de promedio nacional, validando el modelo por dos vías independientes en 15 minutos.
+
+## Proyectos
+
+- [Ship while you sleep (sitio interactivo)](https://ship.alonsogrimaldo.com): Explicación visual e interactiva del patrón de agentes autónomos, con terminales y diagramas.
+- [Proyección electoral Perú 2026](https://elecciones.alonsogrimaldo.com): Página interactiva donde se pueden mover los supuestos de la proyección de segunda vuelta y ver cómo cambia el resultado.
+
+## Temas
+
+Agentes autónomos, LLMs, Claude Code, workflows de desarrollo con IA, aislamiento de workspaces, git, prompt engineering, handoff a agentes, E2E testing automatizado, ingeniería de software con IA.
+
+## Contacto
+
+- LinkedIn: https://www.linkedin.com/in/alonso-grimaldo-3a2917186/
