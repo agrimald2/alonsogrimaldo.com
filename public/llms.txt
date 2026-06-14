@@ -2,6 +2,13 @@
 
 > AI Engineer y founder peruano. Founding Engineer en 021, founder de LaTech (Latin American Tech Solutions) y ex-CTO de VICI (startup adquirida por Tiendanube). Más de 7 años construyendo producto con IA. Escribe sobre workflows de agentes autónomos, cómo estructurar agentes de código para que iteren, prueben y se corrijan solos, y lo que aprende construyendo en producción.
 
+## Páginas
+
+- [Sobre mí](https://alonsogrimaldo.com/sobre-mi): Su historia en primera persona — de digitalizar procesos con ERPs en Perú a construir agentes autónomos en 021, pasando por Francia/Alemania, la Université Paris-Sorbonne, VICI (adquirida por Tiendanube) y LaTech.
+- [Uses](https://alonsogrimaldo.com/uses): El stack real con el que construye — Claude Code, Codex, Cursor/VS Code, Playwright MCP, bash + git, Next.js, Supabase, Vercel, Dokku.
+- [Now](https://alonsogrimaldo.com/now): En qué está trabajando actualmente.
+- [Proyectos](https://alonsogrimaldo.com/proyectos): Ship while you sleep y la proyección electoral interactiva.
+
 ## Posts
 
 - [Ship while you sleep: el workflow de agentes autónomos que usamos en 021](https://alonsogrimaldo.com/posts/ship-while-sleep): Patrón para dejar objetivos grandes corriendo y volver a algo 99% prod-ready. Workspaces aislados por tarea, bloques de puertos sin cruce, y un agente de E2E que encuentra la causa raíz y se auto-corrige hasta 3 corridas limpias seguidas.

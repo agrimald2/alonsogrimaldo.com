@@ -65,8 +65,20 @@ export default function RootLayout({
             <Link className="brand" href="/">
               Alonso Grimaldo<span className="dot">.</span>
             </Link>
+            <Link className="link" href="/sobre-mi">
+              Sobre mí
+            </Link>
             <Link className="link" href="/#posts">
               Posts
+            </Link>
+            <Link className="link" href="/proyectos">
+              Proyectos
+            </Link>
+            <Link className="link" href="/uses">
+              Uses
+            </Link>
+            <Link className="link" href="/now">
+              Now
             </Link>
             <a className="link" href={LINKEDIN} target="_blank" rel="noopener">
               LinkedIn
