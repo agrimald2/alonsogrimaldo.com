@@ -15,7 +15,7 @@ export const personJsonLd = {
   knowsLanguage: ["es", "en", "fr"],
   nationality: { "@type": "Country", name: "Perú" },
   homeLocation: { "@type": "Place", name: "Argentina" },
-  sameAs: [LINKEDIN, "https://x.com/alonsogrimal2"],
+  sameAs: [LINKEDIN, "https://github.com/agrimald2", "https://x.com/alonsogrimal2"],
 };
 
 export const websiteJsonLd = {
@@ -43,7 +43,7 @@ export function blogPostJsonLd(post: Post) {
       "@type": "Person",
       name: "Alonso Grimaldo",
       url: SITE,
-      sameAs: [LINKEDIN, "https://x.com/alonsogrimal2"],
+      sameAs: [LINKEDIN, "https://github.com/agrimald2", "https://x.com/alonsogrimal2"],
     },
     publisher: { "@type": "Person", name: "Alonso Grimaldo", url: SITE },
     keywords: post.tags.join(", "),
