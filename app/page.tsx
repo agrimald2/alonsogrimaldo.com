@@ -21,21 +21,21 @@ const experience = [
     org: "LaTech — Latin American Tech Solutions",
     logo: "/logos/latech.png",
     period: "2023 — hoy",
-    desc: "Dirección estratégica y ejecución de proyectos de software e IA para corporativos: Arca Continental Lindley, Montana, Rimac Seguros, Pitts Perú, entre otros.",
+    desc: "Dirijo y construyo proyectos de software e IA para corporativos. Estuve hands-on en cada entrega: Arca Continental Lindley, Montana, Rimac Seguros, Pitts Perú, BJP, Dialogarte, Emma, P&A, y más — chatbots, portales, back-offices, agentes y servicios de datos.",
   },
   {
     role: "CTO",
     org: "VICI · adquirida por Tiendanube",
     logo: "/logos/vici.png",
     period: "2023 — hoy",
-    desc: "Lideré la transformación de la empresa hacia un asistente de ventas por WhatsApp con IA para restaurantes — pivote que culminó en la adquisición por Tiendanube.",
+    desc: "Lideré y programé la transformación de la empresa: de una plataforma tipo Rappi a un asistente de ventas por WhatsApp con IA para restaurantes — pivote que culminó en la adquisición por Tiendanube.",
   },
   {
     role: "AI Engineer Manager",
     org: "Tiendanube / Nuvemshop",
     logo: "/logos/tiendanube.png",
     period: "2023 — 2025",
-    desc: "EM de Chat Nube, el asistente virtual con IA para las tiendas de la plataforma.",
+    desc: "Lideré el equipo y la ingeniería de Chat Nube, el asistente virtual con IA para las tiendas de la plataforma, desde cero hasta producción.",
   },
 ];
 
@@ -76,32 +76,35 @@ export default function Home() {
       <section id="sobre-mi">
         <div className="wrap">
           <div className="eye">Sobre mí</div>
-          <h2>De ERPs a agentes autónomos</h2>
-          <div className="about-grid">
-            <div>
-              <p className="lead">
-                Llevo más de 7 años digitalizando procesos y negocios — ERPs, CRMs,
-                aplicaciones web y soluciones de IA a medida — para empresas de todos
-                los tamaños. Fundé y lideré la tecnología de varias iniciativas,
-                incluida una startup adquirida por Tiendanube.
-              </p>
-              <p className="lead">
-                Viví, trabajé y estudié más de dos años entre Francia y Alemania
-                (Computer Science en la Université Paris-Sorbonne), y manejo tres
-                idiomas: español, inglés y francés. Hoy estoy de lleno en una cosa:
-                construir soluciones con LLMs y agentes que cambien cómo se hace
-                software.
-              </p>
+          <Link className="about-link" href="/sobre-mi">
+            <h2>De ERPs a agentes autónomos</h2>
+            <div className="about-grid">
+              <div>
+                <p className="lead">
+                  Llevo más de 7 años digitalizando procesos y negocios — ERPs, CRMs,
+                  aplicaciones web y soluciones de IA a medida — para empresas de todos
+                  los tamaños. Fundé y lideré la tecnología de varias iniciativas,
+                  incluida una startup adquirida por Tiendanube.
+                </p>
+                <p className="lead">
+                  Peruano, hace 4 años en Argentina — donde despegó todo lo reciente.
+                  Antes, más de dos años entre Francia y Alemania (Computer Science en
+                  la Université Paris-Sorbonne). Hoy estoy de lleno en una cosa:
+                  construir soluciones con LLMs y agentes que cambien cómo se hace
+                  software.
+                </p>
+                <span className="about-cta">Leer la versión larga →</span>
+              </div>
+              <figure className="about-fig">
+                <Image
+                  src="/img/home-about.jpg"
+                  alt="Ilustración en tinta: un artesano dirige tres bancos de trabajo en paralelo, cada uno con su pequeño asistente mecánico"
+                  width={1000}
+                  height={1000}
+                />
+              </figure>
             </div>
-            <figure className="about-fig">
-              <Image
-                src="/img/home-about.jpg"
-                alt="Ilustración en tinta: un artesano dirige tres bancos de trabajo en paralelo, cada uno con su pequeño asistente mecánico"
-                width={1000}
-                height={1000}
-              />
-            </figure>
-          </div>
+          </Link>
         </div>
       </section>
 
@@ -109,6 +112,10 @@ export default function Home() {
         <div className="wrap">
           <div className="eye">Experiencia</div>
           <h2>Dónde estuve construyendo</h2>
+          <p className="lead" style={{ marginBottom: "0.5rem" }}>
+            No solo dirigí — programé. Decenas de proyectos en producción entre LaTech,
+            VICI y Tiendanube; abajo, los hitos.
+          </p>
           {experience.map((xp) => (
             <div key={xp.org} className="xp">
               <div className="xp-head">

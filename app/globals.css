@@ -274,6 +274,44 @@ h2 {
   font-size: 17px;
 }
 
+/* about (clickable) */
+.about-link {
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: var(--border-radius-lg, 12px);
+  transition: opacity 0.15s ease;
+}
+
+.about-link:hover {
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.about-link h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-link:hover h2 {
+  color: var(--terra);
+}
+
+.about-cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--terra);
+}
+
+.about-link:hover .about-cta {
+  color: var(--terra-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* experience */
 .xp {
   border-top: 1px solid var(--line);

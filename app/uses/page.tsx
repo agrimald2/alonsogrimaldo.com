@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Uses",
@@ -97,7 +98,7 @@ export default function Uses() {
           <p className="lead" style={{ marginTop: "2.5rem" }}>
             Lo importante no son las herramientas exactas — es la estructura alrededor.
             De eso escribo en los{" "}
-            <a href="/#posts">posts</a>.
+            <Link href="/#posts">posts</Link>.
           </p>
         </div>
       </article>
