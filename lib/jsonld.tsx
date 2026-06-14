@@ -14,7 +14,7 @@ export const personJsonLd = {
   alumniOf: { "@type": "CollegeOrUniversity", name: "Université Paris-Sorbonne" },
   knowsLanguage: ["es", "en", "fr"],
   nationality: { "@type": "Country", name: "Perú" },
-  sameAs: [LINKEDIN],
+  sameAs: [LINKEDIN, "https://x.com/alonsogrimal2"],
 };
 
 export const websiteJsonLd = {
@@ -38,7 +38,12 @@ export function blogPostJsonLd(post: Post) {
     image: `${SITE}/posts/${post.slug}/opengraph-image`,
     url: `${SITE}/posts/${post.slug}`,
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/posts/${post.slug}` },
-    author: { "@type": "Person", name: "Alonso Grimaldo", url: SITE, sameAs: [LINKEDIN] },
+    author: {
+      "@type": "Person",
+      name: "Alonso Grimaldo",
+      url: SITE,
+      sameAs: [LINKEDIN, "https://x.com/alonsogrimal2"],
+    },
     publisher: { "@type": "Person", name: "Alonso Grimaldo", url: SITE },
     keywords: post.tags.join(", "),
   };

@@ -23,6 +23,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 const LINKEDIN = "https://www.linkedin.com/in/alonso-grimaldo-3a2917186/";
+const X = "https://x.com/alonsogrimal2";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alonsogrimaldo.com"),
@@ -83,6 +84,9 @@ export default function RootLayout({
             <a className="link" href={LINKEDIN} target="_blank" rel="noopener">
               LinkedIn
             </a>
+            <a className="link" href={X} target="_blank" rel="noopener">
+              X
+            </a>
           </div>
         </nav>
         {children}
@@ -92,6 +96,10 @@ export default function RootLayout({
             con agentes ·{" "}
             <a href={LINKEDIN} target="_blank" rel="noopener">
               LinkedIn
+            </a>{" "}
+            ·{" "}
+            <a href={X} target="_blank" rel="noopener">
+              X
             </a>
           </div>
         </footer>
