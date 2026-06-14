@@ -1,7 +1,6 @@
-import { readFileSync, writeFileSync } from "fs";
+import { writeFileSync } from "fs";
 
-const envFile = readFileSync("/Users/grimmy/Desktop/latech/latech/.env", "utf8");
-const apiKey = envFile.match(/^OPENAI_API_KEY=(.+)$/m)?.[1]?.trim();
+const apiKey = process.env.OPENAI_API_KEY;
 
 const INK =
   "Editorial ink illustration in vintage woodcut / etching style on warm cream paper background (#FAF6EF). " +

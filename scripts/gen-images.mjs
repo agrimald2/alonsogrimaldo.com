@@ -1,9 +1,8 @@
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { writeFileSync, mkdirSync } from "fs";
 
-const envFile = readFileSync("/Users/grimmy/Desktop/latech/latech/.env", "utf8");
-const apiKey = envFile.match(/^OPENAI_API_KEY=(.+)$/m)?.[1]?.trim();
+const apiKey = process.env.OPENAI_API_KEY;
 if (!apiKey) {
-  console.error("OPENAI_API_KEY ausente");
+  console.error("Falta OPENAI_API_KEY (export OPENAI_API_KEY=... antes de correr)");
   process.exit(1);
 }
 
