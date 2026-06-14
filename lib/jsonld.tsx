@@ -14,6 +14,7 @@ export const personJsonLd = {
   alumniOf: { "@type": "CollegeOrUniversity", name: "Université Paris-Sorbonne" },
   knowsLanguage: ["es", "en", "fr"],
   nationality: { "@type": "Country", name: "Perú" },
+  homeLocation: { "@type": "Place", name: "Argentina" },
   sameAs: [LINKEDIN, "https://x.com/alonsogrimal2"],
 };
 

@@ -4,7 +4,7 @@ import { JsonLd, personJsonLd } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Sobre mí",
   description:
-    "De digitalizar procesos con ERPs en Perú a construir agentes autónomos en 021, pasando por Francia, Alemania y una startup adquirida por Tiendanube. La historia, las decisiones y los errores.",
+    "Peruano radicado en Argentina hace 4 años. De digitalizar procesos con ERPs a construir agentes autónomos en 021, pasando por Francia, Alemania y una startup adquirida por Tiendanube. La historia, las decisiones y los errores.",
   alternates: { canonical: "/sobre-mi" },
 };
 
@@ -38,6 +38,15 @@ export default function SobreMi() {
             tres idiomas (español, inglés, francés) y, más importante, con la cabeza
             abierta a trabajar con equipos y clientes de cualquier lado. Esa etapa me
             sacó de pensar &quot;en chico&quot;.
+          </p>
+
+          <h2>Argentina: donde pasó todo lo importante</h2>
+          <p>
+            Hace <b>cuatro años me mudé a Argentina</b>, y resultó ser el lugar donde
+            despegó lo más importante de mi carrera. Acá hice <b>VICI</b>, el paso por{" "}
+            <b>Tiendanube</b>, y hoy <b>021</b>. El ecosistema de startups argentino —
+            la velocidad, la gente, la cultura de construir— me cambió el techo de lo
+            que creía posible.
           </p>
 
           <h2>VICI: el pivote que terminó en una adquisición</h2>

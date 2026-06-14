@@ -46,7 +46,7 @@ export default function Home() {
       <header className="hero">
         <div className="wrap hero-grid">
           <div>
-            <span className="kick">ai engineer · founder · perú</span>
+            <span className="kick">ai engineer · founder · 🇵🇪 en 🇦🇷</span>
             <h1>
               Hola, soy Alonso.
               <br />
@@ -54,8 +54,9 @@ export default function Home() {
             </h1>
             <p className="sub">
               Founding Engineer en <b>021</b>, founder de <b>LaTech</b> y CTO de{" "}
-              <b>VICI</b> (adquirida por Tiendanube). Más de 7 años digitalizando
-              negocios con IA — hoy, diseñando workflows donde los agentes{" "}
+              <b>VICI</b> (adquirida por Tiendanube). Peruano, hace 4 años en{" "}
+              <b>Argentina</b>, donde hice todo lo reciente. Más de 7 años
+              digitalizando negocios con IA — hoy, diseñando workflows donde los agentes{" "}
               <b>iteran, prueban y se corrigen solos</b>. Acá escribo lo que voy
               aprendiendo.
             </p>

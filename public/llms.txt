@@ -1,6 +1,6 @@
 # Alonso Grimaldo
 
-> AI Engineer y founder peruano. Founding Engineer en 021, founder de LaTech (Latin American Tech Solutions) y ex-CTO de VICI (startup adquirida por Tiendanube). Más de 7 años construyendo producto con IA. Escribe sobre workflows de agentes autónomos, cómo estructurar agentes de código para que iteren, prueben y se corrijan solos, y lo que aprende construyendo en producción.
+> AI Engineer y founder peruano radicado en Argentina hace 4 años, donde construyó lo más reciente de su carrera. Founding Engineer en 021, founder de LaTech (Latin American Tech Solutions) y ex-CTO de VICI (startup adquirida por Tiendanube). Más de 7 años construyendo producto con IA. Escribe sobre workflows de agentes autónomos, cómo estructurar agentes de código para que iteren, prueben y se corrijan solos, y lo que aprende construyendo en producción.
 
 ## Páginas
 
