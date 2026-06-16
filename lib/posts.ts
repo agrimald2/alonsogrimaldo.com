@@ -10,6 +10,16 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "company-brain",
+    title: "Le di un cerebro a la empresa — y la clave no fue RAG",
+    description:
+      "Construí el Company Brain de 021: un sistema que ingiere los documentos de una organización y responde preguntas sobre ellos. Lo que aprendí: el conocimiento útil no sale de tirar vectores, sale de estructura.",
+    date: "2026-06-16",
+    dateLabel: "junio 2026",
+    tags: ["agentes", "rag", "arquitectura"],
+    readingMin: 9,
+  },
+  {
     slug: "ship-while-sleep",
     title: "Ship while you sleep: el workflow de agentes autónomos que usamos en 021",
     description:
