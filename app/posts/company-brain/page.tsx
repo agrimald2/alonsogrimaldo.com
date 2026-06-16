@@ -31,8 +31,8 @@ export default function CompanyBrain() {
           </div>
           <h1>Le di un cerebro a la empresa</h1>
           <p className="lead">
-            En 021 construí el <b>Company Brain</b>: un sistema que se traga todos los
-            documentos de una organización —estrategia, producto, decisiones, docs
+            En 021 construimos el <b>Company Brain</b>: un sistema que se traga todos
+            los documentos de una organización —estrategia, producto, decisiones, docs
             técnicos— y responde preguntas sobre ellos. La parte interesante no es que
             funcione. Es <b>por qué</b> funciona — y por qué la respuesta no fue
             &quot;metele RAG&quot;.
@@ -86,9 +86,9 @@ export default function CompanyBrain() {
             </li>
           </ul>
           <p>
-            La conclusión a la que llegué es la misma que repito en todo lo que hago con
-            agentes: <b>el conocimiento útil no sale de tirar vectores, sale de
-            estructura</b>.
+            La conclusión a la que llegamos es la misma que aplicamos en todo lo que
+            hacemos con agentes: <b>el conocimiento útil no sale de tirar vectores, sale
+            de estructura</b>.
           </p>
 
           <h2>La estructura: un grafo híbrido, no una pila de chunks</h2>
@@ -121,7 +121,7 @@ export default function CompanyBrain() {
 
           <h2>Cómo entra el conocimiento: ingesta en dos tiempos</h2>
           <p>
-            Subir un documento no es &quot;guardarlo&quot;. Es procesarlo. Lo partí en
+            Subir un documento no es &quot;guardarlo&quot;. Es procesarlo. Lo partimos en
             dos fases para que la subida sea instantánea y el trabajo pesado pase
             después:
           </p>
@@ -140,7 +140,7 @@ export default function CompanyBrain() {
             </li>
           </ul>
           <p>
-            Un detalle que me ahorró dolor: <b>Markdown canónico como fuente de
+            Un detalle que nos ahorró dolor: <b>Markdown canónico como fuente de
             verdad</b>. En vez de inventar un JSON distinto por cada tipo de archivo,
             todo se normaliza a Markdown antes de enriquecer. Un solo formato interno,
             un solo pipeline.
@@ -168,12 +168,13 @@ export default function CompanyBrain() {
           </pre>
           <p>
             Cada etapa es un agente con un trabajo chico y verificable. El{" "}
-            <b>auditor</b> es mi favorito: antes de responder, busca activamente
+            <b>auditor</b> es la pieza clave: antes de responder, busca activamente
             findings que se contradicen y los marca. Un RAG normal te junta todo y
             reza; este sistema te dice &quot;ojo, estos dos documentos no coinciden&quot;.
           </p>
           <p>
-            ¿Por qué determinístico y no un agente suelto? Por lo mismo que prefiero{" "}
+            ¿Por qué determinístico y no un agente suelto? Por lo mismo que en mi
+            workflow prefiero{" "}
             <a href="/posts/ship-while-sleep">clones aislados y loops de E2E
             verificables</a>: un proceso con etapas claras se puede <b>trazar, auditar y
             arreglar</b>. Un agente que decide todo solo se puede, a lo sumo, rezar.
@@ -193,16 +194,17 @@ export default function CompanyBrain() {
           <div className="quote">
             RAG te dice qué se parece. Un grafo te dice qué se relaciona, quién lo dijo,
             y qué se contradice. La inteligencia no estaba en el modelo — estaba en la
-            estructura que le di alrededor.
+            estructura que le dimos alrededor.
           </div>
           <p>
-            Es el mismo patrón que aplico en todo: <b>aislar, dar fuente de verdad,
-            hacer cada paso verificable</b>. Cambia el dominio —workspaces, proyecciones
-            electorales, el conocimiento de una empresa entera— pero la receta no.
+            Es el mismo patrón que se repite en todo lo que construyo: <b>aislar, dar
+            fuente de verdad, hacer cada paso verificable</b>. Cambia el dominio
+            —workspaces, proyecciones electorales, el conocimiento de una empresa
+            entera— pero la receta no.
           </p>
 
           <p>
-            Construyo cosas así en{" "}
+            Construimos cosas así en{" "}
             <a href="https://from021.io" target="_blank" rel="noopener">
               021
             </a>
