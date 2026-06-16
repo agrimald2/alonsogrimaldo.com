@@ -196,6 +196,15 @@ export default function CompanyBrain() {
             y qué se contradice. La inteligencia no estaba en el modelo — estaba en la
             estructura que le dimos alrededor.
           </div>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/company-brain-infografia.jpg"
+              alt="Infografía 021: la inteligencia no está en juntar información, está en la estructura que la conecta. Un cajón de notas vs un cerebro-grafo con contexto, relaciones y evidencia."
+              width={1024}
+              height={1536}
+            />
+          </figure>
           <p>
             Es el mismo patrón que se repite en todo lo que construyo: <b>aislar, dar
             fuente de verdad, hacer cada paso verificable</b>. Cambia el dominio
