@@ -10,6 +10,16 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "latech",
+    title: "Latech: IA aplicada para empresas que no nacieron digitales",
+    description:
+      "Fundé Latech para llevar IA y software a medida a corporativos peruanos — Arca Continental Lindley, Montana, Rimac, Pits. No vendo modelos: resuelvo procesos. Qué hacemos, cómo cobramos, y por qué la IA sin proceso no sirve.",
+    date: "2026-06-23",
+    dateLabel: "junio 2026",
+    tags: ["latech", "ia aplicada", "empresas"],
+    readingMin: 6,
+  },
+  {
     slug: "company-brain",
     title: "Le di un cerebro a la empresa — y la clave no fue RAG",
     description:
