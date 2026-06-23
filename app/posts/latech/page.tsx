@@ -123,7 +123,7 @@ export default function Latech() {
             </li>
             <li>
               <b>Tech Partner</b> — equipo de tecnología dedicado mes a mes, desde{" "}
-              <b>$3,000 USD/mes</b>. Es el modelo que más usamos: la IA aplicada no
+              <b>$5,000 USD/mes</b>. Es el modelo que más usamos: la IA aplicada no
               es un entregable único, es una capacidad que se mantiene.
             </li>
             <li>
