@@ -162,8 +162,35 @@ export default function AsistenteWhatsapp() {
           <p>
             Ese único JSON alimenta todo: el digest horario agrupado por
             categoría, las alertas urgentes, los to-dos sugeridos y las
-            propuestas de horario. Un call, cuatro features.
+            propuestas de horario. Un call, cuatro features. El digest se ve
+            así:
           </p>
+
+          <WhatsAppMock
+            title="Tú"
+            subtitle="digest: lo importante de la última hora"
+            caption="Cada hora, solo si hay algo. Lo que no llega acá no merecía tu atención."
+            thread={[
+              {
+                from: "in",
+                text: (
+                  <>
+                    📋 <b>Digest 14:00–15:00</b> (4)
+                    {"\n\n"}💼 <b>Trabajo/clientes</b>
+                    {"\n"}• Marco (Gerencia): necesita cerrar el contrato esta
+                    semana
+                    {"\n\n"}💰 <b>Plata/pagos</b>
+                    {"\n"}• María: confirmó la transferencia de 1.500
+                    {"\n\n"}📅 <b>Fechas</b>
+                    {"\n"}• Grupo Dev: la reunión del martes pasa a las 16:00
+                    {"\n\n"}✅ <b>To-dos sugeridos</b>
+                    {"\n"}• Responderle a Marco sobre el contrato
+                  </>
+                ),
+                time: "15:00",
+              },
+            ]}
+          />
 
           <WhatsAppMock
             title="Tú"
@@ -302,6 +329,34 @@ export default function AsistenteWhatsapp() {
             />
           </figure>
 
+          <WhatsAppMock
+            title="Tú"
+            subtitle="briefing de las 7:00"
+            caption="Todas las mañanas: agenda, recordatorios, to-dos. Y las promesas que hice ayer."
+            thread={[
+              {
+                from: "in",
+                text: (
+                  <>
+                    ☀️ <b>Briefing</b>
+                    {"\n"}🗓 <b>lun 14/07</b>
+                    {"\n"}• 10:30–11:00 🏢 Daily
+                    {"\n"}• 15:00–16:00 🏠 Contrato con Carla
+                    {"\n\n"}⏰ <b>Recordatorios de hoy</b>
+                    {"\n"}• 09:00 Mandar la factura a María
+                    {"\n\n"}✅ <b>To-dos pendientes</b> (3)
+                    {"\n"}• 🤝 Mandar la cotización a Carla
+                  </>
+                ),
+                time: "07:00",
+              },
+              {
+                from: "system",
+                text: "🤝 detectado ayer en tu chat con Carla: “mañana te mando la cotización”",
+              },
+            ]}
+          />
+
           <p>
             A eso se suman recordatorios por lenguaje natural, registro de
             gastos por moneda, y un historial de 14 días de los chats vigilados
@@ -393,6 +448,104 @@ export default function AsistenteWhatsapp() {
                 {
                   from: "system",
                   text: "El PDF llegó al chat de María; el bot lo resumió solo",
+                },
+              ]}
+            />
+          </MockCarousel>
+
+          <h2>Hablarle, y que hable por vos</h2>
+          <p>
+            El canal funciona en las dos direcciones. Le puedo hablar por audio
+            (los audios grabados por mí son comandos; los reenviados solo se
+            transcriben), pedirle resúmenes de cualquier chat vigilado, y hasta
+            dictarle respuestas que recién salen cuando yo las confirmo:
+          </p>
+
+          <MockCarousel caption="Voz como comando, resúmenes de chats, borradores con confirmación y audios ajenos transcriptos">
+            <WhatsAppMock
+              compact
+              title="Tú"
+              subtitle="la voz es un comando"
+              thread={[
+                { from: "out", text: "🎙 Audio · 0:06\n“qué tengo mañana?”", time: "08:12" },
+                {
+                  from: "in",
+                  text: (
+                    <>
+                      🗓 <b>mar, 14/07</b>
+                      {"\n"}• 10:30–11:00 🏢 Daily
+                      {"\n"}• 15:00–16:00 🏠 Contrato con Carla
+                    </>
+                  ),
+                  time: "08:12",
+                },
+              ]}
+            />
+            <WhatsAppMock
+              compact
+              title="Tú"
+              subtitle="resúmenes de cualquier chat"
+              thread={[
+                { from: "out", text: "resumime Gerencia de hoy", time: "19:02" },
+                {
+                  from: "in",
+                  text: (
+                    <>
+                      🧠 <b>Resumen Gerencia</b> (32 mensajes)
+                      {"\n"}• Se cerró la propuesta en 3.000
+                      {"\n"}• Kickoff el lunes 20
+                      {"\n"}• Pendiente: contrato lo prepara Marco
+                    </>
+                  ),
+                  time: "19:02",
+                },
+              ]}
+            />
+            <WhatsAppMock
+              compact
+              title="Tú"
+              subtitle="borradores: vos apretás enviar"
+              thread={[
+                {
+                  from: "out",
+                  text: "respondele a Carla que mañana le mando la cotización",
+                  time: "17:40",
+                },
+                {
+                  from: "in",
+                  text: (
+                    <>
+                      ✍️ <b>Borrador para Carla:</b>
+                      {"\n\n"}&quot;Mañana te mando la cotización, quedate
+                      tranqui.&quot;
+                      {"\n\n"}Respondé <b>mandalo</b> para enviarlo.
+                    </>
+                  ),
+                  time: "17:40",
+                },
+                { from: "out", text: "mandalo", time: "17:41" },
+                { from: "in", text: "✅ Enviado a Carla.", time: "17:41" },
+              ]}
+            />
+            <WhatsAppMock
+              compact
+              title="Tú"
+              subtitle="los audios ajenos llegan leídos"
+              thread={[
+                {
+                  from: "in",
+                  text: (
+                    <>
+                      🎧 <b>Marco (Gerencia)</b>:
+                      {"\n"}Confirmado lo del cliente, la reunión de kickoff
+                      queda para el lunes a las 10. Avisale al equipo y…
+                    </>
+                  ),
+                  time: "11:24",
+                },
+                {
+                  from: "system",
+                  text: "Audio de 3:40 en el grupo Gerencia, transcripto solo",
                 },
               ]}
             />
