@@ -30,7 +30,12 @@ export const personJsonLd = {
   knowsLanguage: ["es", "en", "fr"],
   nationality: { "@type": "Country", name: "Perú" },
   homeLocation: { "@type": "Place", name: "Argentina" },
-  sameAs: [LINKEDIN, "https://github.com/agrimald2", "https://x.com/alonsogrimal2"],
+  sameAs: [
+    LINKEDIN,
+    "https://github.com/agrimald2",
+    "https://x.com/alonsogrimal2",
+    "https://www.wikidata.org/wiki/Q140549367",
+  ],
 };
 
 export const websiteJsonLd = {
