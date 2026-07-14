@@ -8,7 +8,7 @@ import { AuthorBox, PostMeta } from "@/lib/post-ui";
 const post = getPost("ship-while-sleep");
 const SITE = "https://ship.alonsogrimaldo.com/";
 
-export const metadata: Metadata = postMetadata(post);
+export const metadata: Metadata = postMetadata(post, { hasEnglish: true });
 
 const faq = [
   {
@@ -33,6 +33,9 @@ export default function ShipWhileSleep() {
         <div className="wrap">
           <PostMeta post={post} />
           <h1>Ship while you sleep</h1>
+          <p className="meta">
+            <a href="/en/posts/ship-while-sleep">Read this post in English →</a>
+          </p>
           <div className="tldr">
             <span className="tldr-label">Respuesta corta</span>
             <p>

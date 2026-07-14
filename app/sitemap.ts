@@ -26,5 +26,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    ...ENGLISH_SLUGS.map((slug) => {
+      const post = posts.find((p) => p.slug === slug)!;
+      return {
+        url: `${SITE}/en/posts/${slug}`,
+        lastModified: new Date(post.updated ?? post.date),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      };
+    }),
   ];
 }
+
+const ENGLISH_SLUGS = ["ship-while-sleep", "worktrees-vs-clones"];

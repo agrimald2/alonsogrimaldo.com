@@ -42,12 +42,28 @@ export function pageMetadata({
   };
 }
 
-export function postMetadata(post: Post): Metadata {
+// hreflang para posts con traducción en /en/posts/<slug>
+export function postLanguages(slug: string) {
+  return {
+    es: `${SITE}/posts/${slug}`,
+    en: `${SITE}/en/posts/${slug}`,
+    "x-default": `${SITE}/posts/${slug}`,
+  };
+}
+
+export function postMetadata(
+  post: Post,
+  opts?: { hasEnglish?: boolean },
+): Metadata {
   const url = `${SITE}/posts/${post.slug}`;
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: `/posts/${post.slug}`, types: FEED_TYPES },
+    alternates: {
+      canonical: `/posts/${post.slug}`,
+      types: FEED_TYPES,
+      ...(opts?.hasEnglish ? { languages: postLanguages(post.slug) } : {}),
+    },
     openGraph: {
       type: "article",
       siteName: "Alonso Grimaldo",

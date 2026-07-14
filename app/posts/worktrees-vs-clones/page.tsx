@@ -7,7 +7,7 @@ import { AuthorBox, PostMeta } from "@/lib/post-ui";
 
 const post = getPost("worktrees-vs-clones");
 
-export const metadata: Metadata = postMetadata(post);
+export const metadata: Metadata = postMetadata(post, { hasEnglish: true });
 
 const faq = [
   {
@@ -32,6 +32,9 @@ export default function WorktreesVsClones() {
         <div className="wrap">
           <PostMeta post={post} />
           <h1>¿Worktrees o clones?</h1>
+          <p className="meta">
+            <a href="/en/posts/worktrees-vs-clones">Read this post in English →</a>
+          </p>
           <div className="tldr">
             <span className="tldr-label">Respuesta corta</span>
             <p>

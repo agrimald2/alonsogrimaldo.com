@@ -24,6 +24,11 @@ ${posts
   .map((p) => `- [${p.title}](${SITE}/posts/${p.slug}): ${p.description}`)
   .join("\n")}
 
+## Posts in English
+
+- [Ship while you sleep: the autonomous-agent workflow we use at 021](${SITE}/en/posts/ship-while-sleep): Leave big goals running and come back to something 99% prod-ready — isolated workspaces, port blocks, and a self-correcting E2E agent.
+- [Git worktrees or real clones? What I learned running AI agents in parallel](${SITE}/en/posts/worktrees-vs-clones): Why git worktrees break with multiple autonomous agents (shared .git) and why real clones from a local bare mirror win. Full recipe included.
+
 ## Proyectos
 
 - [Ship while you sleep (sitio interactivo)](https://ship.alonsogrimaldo.com): Explicación visual e interactiva del patrón de agentes autónomos, con terminales y diagramas.
