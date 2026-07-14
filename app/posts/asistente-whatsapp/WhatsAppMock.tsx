@@ -102,50 +102,162 @@ export function WhatsAppMock({
   subtitle,
   thread,
   caption,
+  compact = false,
 }: {
   title: string;
   subtitle: string;
   thread: Bubble[];
   caption?: string;
+  compact?: boolean;
+}) {
+  const frame = compact
+    ? { ...S.frame, margin: 0, width: 300, maxWidth: 300, flex: "0 0 300px" }
+    : S.frame;
+  const body = (
+    <div style={frame}>
+      <div style={S.header}>
+        <div style={S.avatar}>{title[0]}</div>
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <p style={S.name}>{title}</p>
+          <p style={S.status}>
+            <span style={S.dot} />
+            {subtitle}
+          </p>
+        </div>
+      </div>
+      <div style={S.thread}>
+        {thread.map((b, i) =>
+          b.from === "system" ? (
+            <span key={i} style={S.system}>
+              {b.text}
+            </span>
+          ) : (
+            <div
+              key={i}
+              style={{
+                ...S.bubble,
+                alignSelf: b.from === "out" ? "flex-end" : "flex-start",
+                background: b.from === "out" ? "#dcf8c6" : "#ffffff",
+                borderTopRightRadius: b.from === "out" ? 4 : 16,
+                borderTopLeftRadius: b.from === "in" ? 4 : 16,
+              }}
+            >
+              {b.text}
+              <div style={S.meta}>
+                {b.time}{" "}
+                {b.from === "out" ? <span style={S.checks}>✓✓</span> : <span>✓</span>}
+              </div>
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  );
+  if (compact) return body;
+  return (
+    <figure style={{ margin: "2.5rem 0" }}>
+      {body}
+      {caption ? <figcaption style={S.caption}>{caption}</figcaption> : null}
+    </figure>
+  );
+}
+
+/* Carrusel horizontal de mocks: scroll-snap, para abarcar varios ejemplos */
+export function MockCarousel({
+  caption,
+  children,
+}: {
+  caption?: string;
+  children: ReactNode;
 }) {
   return (
     <figure style={{ margin: "2.5rem 0" }}>
-      <div style={S.frame}>
-        <div style={S.header}>
-          <div style={S.avatar}>{title[0]}</div>
-          <div style={{ minWidth: 0, flex: 1 }}>
-            <p style={S.name}>{title}</p>
-            <p style={S.status}>
-              <span style={S.dot} />
-              {subtitle}
-            </p>
-          </div>
+      <div
+        style={{
+          display: "flex",
+          gap: 16,
+          overflowX: "auto",
+          padding: "8px 4px 16px",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+        }}
+      >
+        {children}
+      </div>
+      {caption ? (
+        <figcaption style={{ ...S.caption, marginTop: 0 }}>
+          {caption} · deslizá para ver más →
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+/* Notificación push estilo lock-screen (ntfy) */
+export function PushMock({
+  title,
+  body,
+  caption,
+}: {
+  title: ReactNode;
+  body: ReactNode;
+  caption?: string;
+}) {
+  return (
+    <figure style={{ margin: "2.5rem 0" }}>
+      <div
+        style={{
+          maxWidth: 400,
+          margin: "0 auto",
+          borderRadius: 20,
+          padding: "12px 14px",
+          background: "rgba(28,25,23,.92)",
+          color: "#fff",
+          display: "flex",
+          gap: 12,
+          alignItems: "flex-start",
+          boxShadow: "0 16px 40px rgba(28,25,23,.35)",
+          fontFamily:
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        }}
+      >
+        <div
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: 9,
+            background: "linear-gradient(135deg,#059669,#10b981)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 19,
+            flexShrink: 0,
+          }}
+        >
+          🔔
         </div>
-        <div style={S.thread}>
-          {thread.map((b, i) =>
-            b.from === "system" ? (
-              <span key={i} style={S.system}>
-                {b.text}
-              </span>
-            ) : (
-              <div
-                key={i}
-                style={{
-                  ...S.bubble,
-                  alignSelf: b.from === "out" ? "flex-end" : "flex-start",
-                  background: b.from === "out" ? "#dcf8c6" : "#ffffff",
-                  borderTopRightRadius: b.from === "out" ? 4 : 16,
-                  borderTopLeftRadius: b.from === "in" ? 4 : 16,
-                }}
-              >
-                {b.text}
-                <div style={S.meta}>
-                  {b.time}{" "}
-                  {b.from === "out" ? <span style={S.checks}>✓✓</span> : <span>✓</span>}
-                </div>
-              </div>
-            )
-          )}
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 8,
+              fontSize: 13,
+              fontWeight: 600,
+              lineHeight: 1.3,
+            }}
+          >
+            <span>{title}</span>
+            <span style={{ fontWeight: 400, opacity: 0.6, fontSize: 11, flexShrink: 0 }}>
+              ahora
+            </span>
+          </div>
+          <div style={{ fontSize: 13, opacity: 0.85, lineHeight: 1.4, marginTop: 2 }}>
+            {body}
+          </div>
+          <div style={{ fontSize: 11, opacity: 0.55, marginTop: 6 }}>
+            Tocar abre el chat de WhatsApp correcto
+          </div>
         </div>
       </div>
       {caption ? <figcaption style={S.caption}>{caption}</figcaption> : null}
