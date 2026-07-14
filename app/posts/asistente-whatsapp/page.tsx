@@ -715,11 +715,10 @@ export default function AsistenteWhatsapp() {
             vos? Escribime. Por WhatsApp, obvio:{" "}
             <a href="https://wa.me/51934094501">wa.me</a>. Y cada
             capability nueva del bot la voy contando en{" "}
-            <a href="https://x.com/alonsogrimal2">X</a> y{" "}
             <a href="https://www.linkedin.com/in/alonso-grimaldo-3a2917186/">
               LinkedIn
-            </a>
-            .
+            </a>{" "}
+            y <a href="https://x.com/alonsogrimal2">X</a>.
           </div>
         </div>
       </article>
