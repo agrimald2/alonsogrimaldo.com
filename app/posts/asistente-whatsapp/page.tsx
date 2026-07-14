@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getPost } from "@/lib/posts";
 import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
-import { WhatsAppMock, MockCarousel, PushMock } from "./WhatsAppMock";
+import { WhatsAppMock, MockCarousel, PushMock, TerminalMock } from "./WhatsAppMock";
 
 const post = getPost("asistente-whatsapp");
 
@@ -555,21 +555,60 @@ export default function AsistenteWhatsapp() {
           <p>
             Acá es donde el bot deja de ser un filtro inteligente y se vuelve
             parte de algo más grande. En mi día a día ya trabajo con{" "}
-            <b>workflows de agentes</b>: cotizaciones que se generan solas a
-            partir de un PRD, e2e testing que encuentra la causa raíz y se
-            auto-corrige, deploys que corren mientras duermo. Todo eso vive en{" "}
-            <b>Claude Code</b>, y Claude ya está conectado al{" "}
-            <b>Company Brain</b> de 021, el grafo de conocimiento del que
-            escribí en{" "}
+            <a href="/posts/ship-while-sleep">
+              <b>workflows de agentes</b>
+            </a>
+            : cotizaciones que se generan solas a partir de un PRD, e2e testing
+            que encuentra la causa raíz y se auto-corrige, deploys que corren
+            mientras duermo. Todo eso vive en <b>Claude Code</b>, y Claude ya
+            está conectado al <b>Company Brain</b> de 021, el grafo de
+            conocimiento del que escribí en{" "}
             <a href="/posts/company-brain">otro post</a>.
           </p>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/wabot-claude.jpg"
+              alt="Ilustración en tinta: un teléfono vintage le pasa un mensaje a un robot mayordomo que corre con un pergamino hacia un autómata artesano conectado a una biblioteca con forma de cerebro"
+              width={1536}
+              height={1024}
+            />
+          </figure>
+
           <p>
             El bot es la puerta de entrada por WhatsApp a esa maquinaria: para
             tareas que le quedan grandes a un clasificador, puede levantar
-            Claude Code y delegarle el trabajo pesado. Y como Claude ya habla
-            con el Brain, preguntarle algo de la empresa desde el teléfono es
-            un mensaje de WhatsApp: el bot le pregunta a Claude, Claude le
-            pregunta al Brain, y la respuesta vuelve al chat.
+            Claude Code y delegarle el trabajo pesado. Se ve así:
+          </p>
+
+          <TerminalMock
+            title="claude — cotización delegada desde WhatsApp"
+            caption="El bot delega, Claude Code ejecuta el workflow de cotizaciones que ya existe, y el PDF vuelve al chat."
+            lines={[
+              { kind: "task", text: "Tarea del bot: cotización para app de delivery de FarmaPlus" },
+              { kind: "step", text: "Leyendo PRD y llamada de discovery del Brain…" },
+              { kind: "step", text: "Corriendo workflow quotation-maker (templates + pricing)…" },
+              { kind: "ok", text: "cotizacion-farmaplus.pdf generada (12 págs)" },
+              { kind: "out", text: "Enviando al autochat de WhatsApp para revisión" },
+            ]}
+          />
+
+          <TerminalMock
+            title="claude — e2e roto, causa raíz y fix"
+            caption="El mismo flujo de e2e testing de mis workflows, disparado por un mensaje."
+            lines={[
+              { kind: "task", text: "Tarea del bot: “se rompió el checkout en QA”" },
+              { kind: "step", text: "Corriendo suite e2e de checkout… 3/14 fallan" },
+              { kind: "step", text: "Causa raíz: el mock de pagos cambió el shape de la respuesta" },
+              { kind: "ok", text: "Fix aplicado + 14/14 verdes + PR abierto" },
+              { kind: "out", text: "Resumen al autochat: “era el mock de pagos, PR #142 listo”" },
+            ]}
+          />
+
+          <p>
+            Y como Claude ya habla con el Brain, preguntarle algo de la empresa
+            desde el teléfono es un mensaje de WhatsApp: el bot le pregunta a
+            Claude, Claude le pregunta al Brain, y la respuesta vuelve al chat.
           </p>
           <div className="quote">
             WhatsApp es la interfaz. Claude Code es el motor. El Brain es la
@@ -670,6 +709,18 @@ export default function AsistenteWhatsapp() {
             Necesitaba que el canal donde ya vivo, el chat conmigo mismo,
             dejara de ser un bloc de notas y empezara a trabajar.
           </p>
+
+          <div className="quote">
+            ¿Querés algo así para tu operación, o discutir cómo lo armarías
+            vos? Escribime. Por WhatsApp, obvio:{" "}
+            <a href="https://wa.me/NUMERO_PENDIENTE">wa.me</a>. Y cada
+            capability nueva del bot la voy contando en{" "}
+            <a href="https://x.com/alonsogrimal2">X</a> y{" "}
+            <a href="https://www.linkedin.com/in/alonso-grimaldo-3a2917186/">
+              LinkedIn
+            </a>
+            .
+          </div>
         </div>
       </article>
     </main>

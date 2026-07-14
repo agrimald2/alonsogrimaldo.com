@@ -193,6 +193,71 @@ export function MockCarousel({
   );
 }
 
+/* Ventana de terminal estilo Claude Code corriendo una tarea delegada */
+export function TerminalMock({
+  title,
+  lines,
+  caption,
+}: {
+  title: string;
+  lines: { kind: "task" | "step" | "ok" | "out"; text: ReactNode }[];
+  caption?: string;
+}) {
+  const color: Record<string, string> = {
+    task: "#e9d5ff",
+    step: "#a8a29e",
+    ok: "#86efac",
+    out: "#fcd34d",
+  };
+  const prefix: Record<string, string> = {
+    task: "❯",
+    step: "⏺",
+    ok: "✓",
+    out: "→",
+  };
+  return (
+    <figure style={{ margin: "2.5rem 0" }}>
+      <div
+        style={{
+          maxWidth: 560,
+          margin: "0 auto",
+          borderRadius: 14,
+          overflow: "hidden",
+          background: "#1c1917",
+          boxShadow: "0 16px 40px rgba(28,25,23,.3)",
+          fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+          fontSize: 12.5,
+          lineHeight: 1.7,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "10px 14px",
+            background: "rgba(255,255,255,.04)",
+            borderBottom: "1px solid rgba(255,255,255,.07)",
+          }}
+        >
+          <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#ff5f57" }} />
+          <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#febc2e" }} />
+          <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#28c840" }} />
+          <span style={{ marginLeft: 8, color: "#a8a29e", fontSize: 11.5 }}>{title}</span>
+        </div>
+        <div style={{ padding: "14px 16px 16px", overflowX: "auto" }}>
+          {lines.map((l, i) => (
+            <div key={i} style={{ color: color[l.kind], whiteSpace: "pre-wrap" }}>
+              <span style={{ opacity: 0.8 }}>{prefix[l.kind]}</span> {l.text}
+            </div>
+          ))}
+        </div>
+      </div>
+      {caption ? <figcaption style={S.caption}>{caption}</figcaption> : null}
+    </figure>
+  );
+}
+
 /* Notificación push estilo lock-screen (ntfy) */
 export function PushMock({
   title,
