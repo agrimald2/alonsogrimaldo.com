@@ -10,6 +10,16 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "asistente-whatsapp",
+    title: "Mi asistente ejecutivo es un chat de WhatsApp conmigo mismo",
+    description:
+      "Construí un bot local con Baileys que transcribe mis audios, vigila 39 grupos de trabajo, maneja mis 2 calendarios por lenguaje natural y me caza las promesas que hago en cualquier chat. Sin apps nuevas, por menos de $12 al mes.",
+    date: "2026-07-13",
+    dateLabel: "julio 2026",
+    tags: ["agentes", "whatsapp", "automatización"],
+    readingMin: 12,
+  },
+  {
     slug: "latech",
     title: "Latech: IA aplicada para empresas que no nacieron digitales",
     description:

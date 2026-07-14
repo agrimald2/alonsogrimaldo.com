@@ -1,0 +1,425 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { getPost } from "@/lib/posts";
+import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
+import { WhatsAppMock } from "./WhatsAppMock";
+
+const post = getPost("asistente-whatsapp");
+
+export const metadata: Metadata = {
+  title: post.title,
+  description: post.description,
+  alternates: { canonical: `/posts/${post.slug}` },
+  openGraph: {
+    type: "article",
+    publishedTime: post.date,
+    authors: ["Alonso Grimaldo"],
+    tags: post.tags,
+    title: post.title,
+    description: post.description,
+    url: `https://alonsogrimaldo.com/posts/${post.slug}`,
+  },
+};
+
+export default function AsistenteWhatsapp() {
+  return (
+    <main>
+      <article>
+        <JsonLd data={blogPostJsonLd(post)} />
+        <div className="wrap">
+          <div className="meta">
+            {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
+          </div>
+          <h1>Mi asistente ejecutivo es un chat de WhatsApp conmigo mismo</h1>
+          <p className="lead">
+            Ayer me mandé un audio a mí mismo preguntando qué tenía en la agenda.
+            Me respondió mi asistente — con mis reuniones reales, de mis dos
+            calendarios. No es una app nueva ni un SaaS: es un proceso de Node
+            corriendo en mi Mac, conectado a mi WhatsApp de siempre. Lo construí
+            en un día y me cuesta <b>menos de $12 al mes</b>. Este post es el por
+            qué y el cómo, con los bugs incluidos.
+          </p>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/post-wabot.jpg"
+              alt="Ilustración en tinta: un pequeño robot mayordomo dentro de un teléfono vintage ordena una avalancha de burbujas de chat en bandejas"
+              width={1536}
+              height={1024}
+              priority
+            />
+          </figure>
+
+          <h2>El porqué: mi vida operativa ES WhatsApp</h2>
+          <p>
+            Cuando listé mis grupos para configurar el bot, eran <b>993</b>. No
+            es un typo. Entre Latech, 021, clientes, proveedores, familia y cada
+            plan que alguna vez existió, WhatsApp es donde ocurre todo: ahí me
+            piden deploys, ahí me mandan facturas, ahí me proponen reuniones en
+            audios de seis minutos que escucho a 2x caminando.
+          </p>
+          <p>
+            El problema no es el volumen — es que <b>lo importante viaja
+            mezclado con lo trivial</b>, en el mismo canal, con la misma
+            notificación. La factura del cliente y el meme del grupo de amigos
+            suenan igual. Y las herramientas clásicas de productividad fallan
+            todas por la misma razón: exigen que te mudes. Otro inbox, otra app,
+            otro hábito que mantener.
+          </p>
+          <div className="quote">
+            El mejor asistente no es una app nueva. Es el chat donde ya vivís,
+            con superpoderes.
+          </div>
+          <p>
+            WhatsApp tiene un rincón perfecto para esto: el <b>chat con vos
+            mismo</b>. Ya lo usaba como bloc de notas. Ahora es mi centro de
+            comando: le hablo (o le mando audios) y del otro lado responde un
+            bot que ve todo lo que yo veo.
+          </p>
+
+          <WhatsAppMock
+            title="Tú"
+            subtitle="tu autochat, ahora con asistente"
+            caption="El origen de todo: audios propios → transcripción + resumen."
+            thread={[
+              { from: "out", text: "🎙 Audio · 4:12", time: "09:14" },
+              {
+                from: "in",
+                text: (
+                  <>
+                    📝 <b>Transcripción</b>
+                    {"\n"}Llamé al proveedor, quedó en mandar la cotización el
+                    jueves. Hay que confirmar el stock antes del viernes y
+                    avisarle a Marco…
+                    {"\n\n"}🧾 <b>Resumen</b>
+                    {"\n"}• Proveedor manda cotización el jueves
+                    {"\n"}• Confirmar stock antes del viernes
+                    {"\n"}• Avisar a Marco
+                  </>
+                ),
+                time: "09:15",
+              },
+            ]}
+          />
+
+          <h2>El cómo: un dispositivo vinculado con cerebro</h2>
+          <p>
+            La base es <b>Baileys</b>, una librería open source que habla el
+            protocolo de WhatsApp Web. El bot se vincula como un dispositivo más
+            (igual que WhatsApp en tu compu), corre bajo <b>pm2</b> en mi Mac, y
+            desde ahí ve los mensajes entrantes en tiempo real. Encima de eso:{" "}
+            <b>Whisper</b> para transcribir, <b>gpt-4o-mini</b> para clasificar
+            y entender lenguaje natural, y la API de <b>Google Calendar y
+            Gmail</b> para mis dos cuentas.
+          </p>
+          <p>
+            El principio rector de todo el diseño es uno solo: <b>pipeline
+            barato primero</b>. Cada mensaje pasa por capas de filtrado donde
+            cada capa es más cara que la anterior — y la mayoría muere gratis en
+            la primera:
+          </p>
+          <ul>
+            <li>
+              <b>Capa 0 — alcance:</b> solo DMs y los 39 grupos de trabajo que
+              elegí vigilar. Estados, canales y los otros 954 grupos no existen.
+            </li>
+            <li>
+              <b>Capa 1 — regex, costo $0:</b> stickers, reacciones,
+              &quot;jaja&quot;, &quot;ok&quot;, emojis sueltos → descartados sin
+              gastar un token. Acá muere ~70% de lo que entra.
+            </li>
+            <li>
+              <b>Capa 2 — LLM batcheado:</b> lo que sobrevive se acumula y cada
+              5 minutos un solo call a gpt-4o-mini clasifica el lote entero.
+            </li>
+            <li>
+              <b>Capa 3 — acción:</b> urgente → push inmediato al teléfono;
+              importante → digest cada hora; el resto → descartado.
+            </li>
+          </ul>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/wabot-pipeline.jpg"
+              alt="Ilustración en tinta: cientos de burbujas de chat caen en un embudo con tamices; solo tres llegan abajo, sobre un cojín que sostiene un robot"
+              width={1536}
+              height={1024}
+            />
+          </figure>
+
+          <p>El clasificador devuelve JSON estricto por cada mensaje:</p>
+          <pre>
+            <code>{`{
+  "importante": true,
+  "urgente": false,
+  "categoria": "plata",          // trabajo | plata | fechas | pedido
+  "resumen": "María envió la factura de julio y espera el pago",
+  "propuestaHorario": null,       // detecta "¿te va mañana 15:00?"
+  "todo": "Pagar la factura de julio a María"
+}`}</code>
+          </pre>
+          <p>
+            Ese único JSON alimenta todo: el digest horario agrupado por
+            categoría, las alertas urgentes, los to-dos sugeridos y las
+            propuestas de horario. Un call, cuatro features.
+          </p>
+
+          <WhatsAppMock
+            title="Tú"
+            subtitle="urgencias: del chat al push en segundos"
+            caption="Lo urgente salta el digest: aviso inmediato + push real al teléfono (ntfy) con deep link al chat."
+            thread={[
+              {
+                from: "in",
+                text: (
+                  <>
+                    🚨 <b>Urgente</b> — Diego (Ops Acme)
+                    {"\n"}Se cayó el servidor de producción y los usuarios no
+                    pueden entrar.
+                    {"\n"}👉 Llamar a Diego ya
+                  </>
+                ),
+                time: "16:47",
+              },
+              { from: "system", text: "🔔 Push enviado a tu teléfono · tap abre el chat de Diego" },
+            ]}
+          />
+
+          <h2>El calendario se maneja hablando</h2>
+          <p>
+            La segunda mitad del bot es un asistente de agenda sobre mis dos
+            cuentas de Google (la personal y la de 021). Acá también hay un gate
+            barato: una regex decide si el texto <i>parece</i> de calendario, y
+            solo entonces gpt-4o-mini lo convierte en una acción estructurada
+            con fechas absolutas. &quot;El jueves 3pm&quot; se vuelve
+            <code>2026-07-16T15:00</code> sin que yo piense en zonas horarias.
+          </p>
+
+          <WhatsAppMock
+            title="Tú"
+            subtitle="lenguaje natural → Google Calendar"
+            caption="Crear nunca es automático: siempre confirmación explícita, con chequeo de conflictos contra ambas cuentas."
+            thread={[
+              {
+                from: "out",
+                text: "agendame reunión con Marco el jueves 3pm con meet",
+                time: "11:02",
+              },
+              {
+                from: "in",
+                text: (
+                  <>
+                    📅 <b>Confirmar evento</b> 🏠 personal
+                    {"\n"}Reunión con Marco
+                    {"\n"}jue 16/07 15:00–16:00
+                    {"\n"}📹 con Google Meet
+                    {"\n\n"}Respondé <b>sí</b> para agendar, <b>no</b> para
+                    cancelar.
+                  </>
+                ),
+                time: "11:02",
+              },
+              { from: "out", text: "sí", time: "11:03" },
+              {
+                from: "in",
+                text: "✅ Agendado en 🏠 personal.\n📹 meet.google.com/abc-defg-hij",
+                time: "11:03",
+              },
+            ]}
+          />
+
+          <p>
+            Y funciona en las dos direcciones. Si <b>otra persona</b> me propone
+            un horario en cualquier chat vigilado, el clasificador lo detecta,
+            chequea mi disponibilidad real en ambos calendarios, y me deja el
+            evento armado a una palabra de distancia:
+          </p>
+
+          <WhatsAppMock
+            title="Tú"
+            subtitle="propuestas de horario, resueltas"
+            caption="Carla propuso un horario en su chat. El bot ya miró mis dos agendas antes de avisarme."
+            thread={[
+              {
+                from: "in",
+                text: (
+                  <>
+                    📅 <b>Propuesta de horario</b> — Carla
+                    {"\n"}&quot;¿Te va mañana 15:00 para revisar el
+                    contrato?&quot;
+                    {"\n"}mar 14/07 15:00
+                    {"\n"}✅ Estás libre en ambos calendarios
+                    {"\n\n"}Respondé <b>agendalo</b> para crearlo.
+                  </>
+                ),
+                time: "18:21",
+              },
+              { from: "out", text: "agendalo", time: "18:24" },
+              { from: "in", text: "✅ Agendado en 🏠 personal.", time: "18:24" },
+            ]}
+          />
+
+          <h2>Las 16 cosas que hace hoy</h2>
+          <p>En un día de construcción iterativa, el bot terminó haciendo:</p>
+          <ul>
+            <li>
+              <b>Entrada:</b> transcripción de audios (míos y de chats
+              vigilados), resúmenes de PDFs e imágenes entrantes (visión), mails
+              importantes de dos cuentas de Gmail al digest.
+            </li>
+            <li>
+              <b>Filtrado:</b> digest horario por categorías, urgencias
+              inmediatas, to-dos sugeridos, briefing todas las mañanas a las
+              7:00 con agenda + pendientes.
+            </li>
+            <li>
+              <b>Agenda:</b> ver/crear/borrar eventos en dos calendarios por
+              lenguaje natural (texto o audio), invitados por nombre, links de
+              Meet, detección de propuestas de horario ajenas.
+            </li>
+            <li>
+              <b>Memoria:</b> historial de 14 días con búsqueda (&quot;¿qué
+              quedó con el contrato?&quot;), resúmenes por chat, registro de
+              gastos por moneda, recordatorios.
+            </li>
+            <li>
+              <b>Salida:</b> borradores de respuesta (&quot;respondele a Juan
+              que…&quot;) que solo se envían con mi confirmación explícita, y
+              push real al teléfono vía ntfy con deep links al chat correcto.
+            </li>
+          </ul>
+          <p>
+            Mi favorita es la que no pedí hasta el final: el <b>detector de
+            promesas</b>. El bot lee lo que <i>yo</i> escribo en chats de
+            trabajo, y cuando prometo algo — &quot;mañana te mando la
+            cotización&quot; — lo convierte en to-do con recordatorio a la hora
+            que corresponde. Nadie más te cubre esa espalda.
+          </p>
+
+          <figure className="post-fig">
+            <Image
+              src="/img/wabot-promesas.jpg"
+              alt="Ilustración en tinta: burbujas de chat se escapan de un escritorio como globos y un pequeño robot las atrapa con una red y las anota en un libro"
+              width={1024}
+              height={1024}
+            />
+          </figure>
+
+          <WhatsAppMock
+            title="Tú"
+            subtitle="briefing de las 7:00"
+            caption="Todas las mañanas: agenda de ambas cuentas, recordatorios, to-dos — y las promesas que hice ayer."
+            thread={[
+              {
+                from: "in",
+                text: (
+                  <>
+                    ☀️ <b>Briefing</b>
+                    {"\n"}🗓 <b>lun 14/07</b>
+                    {"\n"}• 10:30–11:00 🏢 Daily
+                    {"\n"}• 15:00–16:00 🏠 Contrato con Carla
+                    {"\n\n"}✅ <b>To-dos pendientes</b> (3)
+                    {"\n"}• Pagar factura de julio a María
+                    {"\n"}• 🤝 Mandar la cotización a Carla
+                  </>
+                ),
+                time: "07:00",
+              },
+              {
+                from: "system",
+                text: "🤝 detectado ayer en tu chat con Carla: “mañana te mando la cotización”",
+              },
+            ]}
+          />
+
+          <h2>Decisiones de diseño con opinión</h2>
+          <ul>
+            <li>
+              <b>El bot jamás escribe a terceros por su cuenta.</b> La única
+              función que envía mensajes a otras personas (borradores) requiere
+              preview exacto + confirmación explícita, y expira a los 5
+              minutos. Todo lo demás ocurre en mi autochat.
+            </li>
+            <li>
+              <b>Los audios reenviados nunca ejecutan comandos.</b> Un audio
+              grabado por mí puede ser un comando de voz; uno reenviado solo se
+              transcribe. Si no, cualquiera podría mandarme un audio diciendo
+              &quot;borrá mi agenda&quot; y yo reenviármelo sin pensar.
+            </li>
+            <li>
+              <b><code>markOnlineOnConnect: false</code>.</b> Si el dispositivo
+              vinculado se reporta online, WhatsApp deja de mandar
+              notificaciones push al teléfono. Un bot que te silencia el
+              teléfono es peor que no tener bot.
+            </li>
+            <li>
+              <b>Push por fuera de WhatsApp.</b> Los mensajes que te mandás a
+              vos mismo no suenan. Para urgencias uso ntfy: push real, con
+              prioridad, y el tap abre directamente el chat correcto vía deep
+              link de wa.me.
+            </li>
+          </ul>
+
+          <h2>War stories: los tres bugs que me gustaron</h2>
+          <p>
+            <b>1. El <code>\b</code> que no banca tildes.</b> Mis gates son
+            regex, y JavaScript computa <code>\b</code> con <code>\w</code>{" "}
+            ASCII: &quot;é&quot; no es word character. Resultado:
+            &quot;gast<b>é</b> 120 en hosting&quot; no matcheaba{" "}
+            <code>gast[eéao]\w*\b</code> y el bot me ignoraba en silencio. La
+            regla que me llevo: en español, nunca cierres un gate con{" "}
+            <code>\b</code> después de una posible tilde.
+          </p>
+          <p>
+            <b>2. Dos instancias peleando por la sesión.</b> Lancé una instancia
+            de prueba mientras la de producción corría bajo pm2. WhatsApp solo
+            permite una conexión por dispositivo vinculado: las dos entraron en
+            un loop de reconexión mutua, pateándose cada 3 segundos. Parecía un
+            bug del bot; era un conflicto de sesión.
+          </p>
+          <p>
+            <b>3. El recordatorio que viajó al 2023.</b> Le dije al clasificador
+            de promesas qué día y hora era… pero no el año. Dedujo
+            &quot;mañana&quot; en el año de su training data y me agendó un
+            recordatorio tres años en el pasado. Los LLMs no asumen tu presente:
+            decíselo completo.
+          </p>
+
+          <h2>Los números</h2>
+          <ul>
+            <li>
+              <b>Costo:</b> menos de $12/mes todo incluido — Whisper para
+              audios, gpt-4o-mini batcheado para clasificación y lenguaje
+              natural, visión para imágenes. Google Calendar, Gmail y ntfy son
+              gratis.
+            </li>
+            <li>
+              <b>Stack:</b> Node + Baileys + pm2 en una Mac. Sin servidores
+              nuevos, sin base de datos — el estado es un JSON y el historial
+              son archivos JSONL con retención de 14 días.
+            </li>
+            <li>
+              <b>Tiempo:</b> un día de construcción iterativa, feature por
+              feature, cada una deployada y probada contra mis datos reales
+              antes de la siguiente.
+            </li>
+          </ul>
+
+          <h2>Lo que sigue</h2>
+          <p>
+            La próxima pieza es <b>ops</b>: que el bot haga ping a los servidores
+            de mis clientes y me avise de una caída antes de que me la cuente el
+            cliente — y que &quot;¿está caído el server de X?&quot; se responda
+            con un status real por ssh.
+          </p>
+          <p>
+            Pero la tesis ya está probada: no necesitaba otra app de
+            productividad. Necesitaba que el canal donde ya vivo —el chat
+            conmigo mismo— dejara de ser un bloc de notas y empezara a
+            trabajar.
+          </p>
+        </div>
+      </article>
+    </main>
+  );
+}
