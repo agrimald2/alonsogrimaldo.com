@@ -35,10 +35,9 @@ export default function AsistenteWhatsapp() {
             Ayer me mandé un audio a mí mismo preguntando qué tenía en la agenda,
             y me respondió mi asistente con mis reuniones reales, de mis dos
             calendarios. No es una app nueva ni un SaaS: es un proceso de Node
-            corriendo en mi Mac mini, conectado a mi WhatsApp de siempre. Lo
-            construí en un par de horas iterando y me cuesta{" "}
-            <b>menos de $5 al mes</b>. Este post es el por qué y el cómo, con los
-            bugs incluidos.
+            corriendo en mi Mac mini, conectado a mi WhatsApp de siempre, que
+            construí en un par de horas iterando. Este post es el por qué y el
+            cómo, con los bugs incluidos.
           </p>
 
           <figure className="post-fig">
