@@ -713,7 +713,7 @@ export default function AsistenteWhatsapp() {
           <div className="quote">
             ¿Querés algo así para tu operación, o discutir cómo lo armarías
             vos? Escribime. Por WhatsApp, obvio:{" "}
-            <a href="https://wa.me/NUMERO_PENDIENTE">wa.me</a>. Y cada
+            <a href="https://wa.me/51934094501">wa.me</a>. Y cada
             capability nueva del bot la voy contando en{" "}
             <a href="https://x.com/alonsogrimal2">X</a> y{" "}
             <a href="https://www.linkedin.com/in/alonso-grimaldo-3a2917186/">
