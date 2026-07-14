@@ -35,6 +35,13 @@ export const metadata: Metadata = {
   description:
     "Founding Engineer en 021, founder de LaTech y CTO de VICI (adquirida por Tiendanube). Construyo producto con agentes autónomos y escribo sobre cómo trabajo.",
   authors: [{ name: "Alonso Grimaldo", url: LINKEDIN }],
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "Alonso Grimaldo — posts" },
+      ],
+    },
+  },
   openGraph: {
     type: "website",
     siteName: "Alonso Grimaldo",
@@ -43,12 +50,9 @@ export const metadata: Metadata = {
       "Construyo producto con agentes autónomos. Workflows, agentes y aprendizajes.",
     url: "https://alonsogrimaldo.com",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Alonso Grimaldo",
-    description:
-      "Construyo producto con agentes autónomos. Workflows, agentes y aprendizajes.",
-  },
+  // Sin bloque twitter acá: el merge de metadata es shallow y este bloque
+  // pisaba el título/descripción de cada post. Cada página lo define vía
+  // lib/meta.ts.
 };
 
 export default function RootLayout({

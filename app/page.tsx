@@ -3,10 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { posts } from "@/lib/posts";
 import { JsonLd, personJsonLd, websiteJsonLd } from "@/lib/jsonld";
+import { pageMetadata } from "@/lib/meta";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+export const metadata: Metadata = pageMetadata({
+  description:
+    "Founding Engineer en 021, founder de LaTech y CTO de VICI (adquirida por Tiendanube). Construyo producto con agentes autónomos y escribo sobre cómo trabajo.",
+  path: "/",
+});
 
 const experience = [
   {
@@ -63,7 +66,7 @@ export default function Home() {
           </div>
           <figure className="hero-fig">
             <Image
-              src="/img/alonso.jpg"
+              src="/img/alonso.webp"
               alt="Alonso Grimaldo"
               width={823}
               height={900}
@@ -97,7 +100,7 @@ export default function Home() {
               </div>
               <figure className="about-fig">
                 <Image
-                  src="/img/home-about.jpg"
+                  src="/img/home-about.webp"
                   alt="Ilustración en tinta: un artesano dirige tres bancos de trabajo en paralelo, cada uno con su pequeño asistente mecánico"
                   width={1000}
                   height={1000}

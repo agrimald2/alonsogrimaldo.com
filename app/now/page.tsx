@@ -1,20 +1,37 @@
 import type { Metadata } from "next";
+import { JsonLd, personJsonLd, websiteJsonLd } from "@/lib/jsonld";
+import { pageMetadata } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Now",
   description:
     "En qué está trabajando Alonso Grimaldo ahora mismo: 021, LaTech, y experimentos con agentes autónomos.",
-  alternates: { canonical: "/now" },
-};
+  path: "/now",
+});
 
 const UPDATED = "junio 2026";
+const UPDATED_ISO = "2026-06-14";
+
+const nowJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  url: "https://alonsogrimaldo.com/now",
+  name: "Now — Alonso Grimaldo",
+  inLanguage: "es",
+  dateModified: UPDATED_ISO,
+  about: { "@id": "https://alonsogrimaldo.com/#person" },
+  isPartOf: { "@id": "https://alonsogrimaldo.com/#website" },
+};
 
 export default function Now() {
   return (
     <main>
       <article>
+        <JsonLd data={[personJsonLd, websiteJsonLd, nowJsonLd]} />
         <div className="wrap">
-          <div className="meta">now · actualizado {UPDATED}</div>
+          <div className="meta">
+            now · actualizado <time dateTime={UPDATED_ISO}>{UPDATED}</time>
+          </div>
           <h1>En qué ando ahora</h1>
           <p className="lead">
             Esta es una <a href="https://nownownow.com/about" target="_blank" rel="noopener">página /now</a>:

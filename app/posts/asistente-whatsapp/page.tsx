@@ -1,36 +1,34 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getPost } from "@/lib/posts";
-import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
+import { JsonLd, postPageJsonLd } from "@/lib/jsonld";
+import { postMetadata } from "@/lib/meta";
+import { AuthorBox, PostMeta } from "@/lib/post-ui";
 import { WhatsAppMock, MockCarousel, PushMock, TerminalMock } from "./WhatsAppMock";
 
 const post = getPost("asistente-whatsapp");
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/posts/${post.slug}` },
-  openGraph: {
-    type: "article",
-    publishedTime: post.date,
-    authors: ["Alonso Grimaldo"],
-    tags: post.tags,
-    title: post.title,
-    description: post.description,
-    url: `https://alonsogrimaldo.com/posts/${post.slug}`,
-  },
-};
+export const metadata: Metadata = postMetadata(post);
 
 export default function AsistenteWhatsapp() {
   return (
     <main>
       <article>
-        <JsonLd data={blogPostJsonLd(post)} />
+        <JsonLd data={postPageJsonLd(post)} />
         <div className="wrap">
-          <div className="meta">
-            {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
-          </div>
+          <PostMeta post={post} />
           <h1>Mi asistente ejecutivo es un chat de WhatsApp conmigo mismo</h1>
+          <div className="tldr">
+            <span className="tldr-label">Respuesta corta</span>
+            <p>
+              Un bot de Node + Baileys en una Mac mini convierte el chat de
+              WhatsApp con vos mismo en asistente ejecutivo: transcribe audios,
+              filtra 39 grupos con un pipeline en capas (regex gratis primero,
+              LLM batcheado después), maneja dos calendarios por lenguaje
+              natural, caza promesas y delega tareas pesadas en Claude Code.
+              Costo: menos de $5 al mes.
+            </p>
+          </div>
           <p className="lead">
             Ayer me mandé un audio a mí mismo preguntando qué tenía en la agenda,
             y me respondió mi asistente con mis reuniones reales, de mis dos
@@ -42,7 +40,7 @@ export default function AsistenteWhatsapp() {
 
           <figure className="post-fig">
             <Image
-              src="/img/post-wabot.jpg"
+              src="/img/post-wabot.webp"
               alt="Ilustración en tinta: un pequeño robot mayordomo dentro de un teléfono vintage ordena una avalancha de burbujas de chat en bandejas"
               width={1536}
               height={1024}
@@ -104,8 +102,15 @@ export default function AsistenteWhatsapp() {
 
           <h2>El cómo: un dispositivo vinculado con cerebro</h2>
           <p>
-            La base es <b>Baileys</b>, una librería open source que habla el
-            protocolo de WhatsApp Web. El bot se vincula como un dispositivo más
+            La base es{" "}
+            <a
+              href="https://github.com/WhiskeySockets/Baileys"
+              target="_blank"
+              rel="noopener"
+            >
+              <b>Baileys</b>
+            </a>
+            , una librería open source que habla el protocolo de WhatsApp Web. El bot se vincula como un dispositivo más
             (igual que WhatsApp en tu compu) y corre bajo <b>pm2</b> en mi{" "}
             <b>Mac mini</b>, que está siempre prendida y conectada: el asistente
             no depende de que yo abra la laptop. Encima de eso: <b>Whisper</b>{" "}
@@ -141,7 +146,7 @@ export default function AsistenteWhatsapp() {
 
           <figure className="post-fig">
             <Image
-              src="/img/wabot-pipeline.jpg"
+              src="/img/wabot-pipeline.webp"
               alt="Ilustración en tinta: cientos de burbujas de chat caen en un embudo con tamices; solo tres llegan abajo, sobre un cojín que sostiene un robot"
               width={1536}
               height={1024}
@@ -322,7 +327,7 @@ export default function AsistenteWhatsapp() {
 
           <figure className="post-fig">
             <Image
-              src="/img/wabot-promesas.jpg"
+              src="/img/wabot-promesas.webp"
               alt="Ilustración en tinta: burbujas de chat se escapan de un escritorio como globos y un pequeño robot las atrapa con una red y las anota en un libro"
               width={1024}
               height={1024}
@@ -568,7 +573,7 @@ export default function AsistenteWhatsapp() {
 
           <figure className="post-fig">
             <Image
-              src="/img/wabot-claude.jpg"
+              src="/img/wabot-claude.webp"
               alt="Ilustración en tinta: un teléfono vintage le pasa un mensaje a un robot mayordomo que corre con un pergamino hacia un autómata artesano conectado a una biblioteca con forma de cerebro"
               width={1536}
               height={1024}
@@ -638,9 +643,12 @@ export default function AsistenteWhatsapp() {
             </li>
             <li>
               <b>Push por fuera de WhatsApp.</b> Los mensajes que te mandás a
-              vos mismo no suenan. Para urgencias uso ntfy: push real, con
-              prioridad, y el tap abre directamente el chat correcto vía deep
-              link de wa.me.
+              vos mismo no suenan. Para urgencias uso{" "}
+              <a href="https://ntfy.sh/" target="_blank" rel="noopener">
+                ntfy
+              </a>
+              : push real, con prioridad, y el tap abre directamente el chat
+              correcto vía deep link de wa.me.
             </li>
           </ul>
 
@@ -720,6 +728,7 @@ export default function AsistenteWhatsapp() {
             </a>{" "}
             y <a href="https://x.com/alonsogrimal2">X</a>.
           </div>
+          <AuthorBox />
         </div>
       </article>
     </main>

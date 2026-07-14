@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/meta";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Uses",
   description:
     "El stack con el que construyo: editores, agentes de IA, modelos, terminal y herramientas que uso todos los días para shippear con agentes autónomos.",
-  alternates: { canonical: "/uses" },
-};
+  path: "/uses",
+});
 
 type Item = { name: string; note: string };
 type Group = { title: string; items: Item[] };

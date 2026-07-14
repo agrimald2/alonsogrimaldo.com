@@ -1,35 +1,34 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getPost } from "@/lib/posts";
-import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
+import { JsonLd, postPageJsonLd } from "@/lib/jsonld";
+import { postMetadata } from "@/lib/meta";
+import { AuthorBox, PostMeta } from "@/lib/post-ui";
 
 const post = getPost("company-brain");
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/posts/${post.slug}` },
-  openGraph: {
-    type: "article",
-    publishedTime: post.date,
-    authors: ["Alonso Grimaldo"],
-    tags: post.tags,
-    title: post.title,
-    description: post.description,
-    url: `https://alonsogrimaldo.com/posts/${post.slug}`,
-  },
-};
+export const metadata: Metadata = postMetadata(post);
 
 export default function CompanyBrain() {
   return (
     <main>
       <article>
-        <JsonLd data={blogPostJsonLd(post)} />
+        <JsonLd data={postPageJsonLd(post)} />
         <div className="wrap">
-          <div className="meta">
-            {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
-          </div>
+          <PostMeta post={post} />
           <h1>Le di un cerebro a la empresa</h1>
+          <div className="tldr">
+            <span className="tldr-label">Respuesta corta</span>
+            <p>
+              El RAG vectorial responde &quot;¿qué se parece a esto?&quot;, pero no
+              &quot;¿qué depende de qué?&quot;, &quot;¿quién lo dijo?&quot; ni
+              &quot;¿esto se contradice?&quot;. El Company Brain de 021 usa un grafo
+              híbrido en Neo4j — capa documental con embeddings + capa semántica de
+              entidades y relaciones — donde cada afirmación apunta a su evidencia
+              exacta, y responde con una máquina de estados de cinco etapas que
+              detecta contradicciones antes de contestar.
+            </p>
+          </div>
           <p className="lead">
             En 021 construimos el <b>Company Brain</b>: un sistema que se traga todos
             los documentos de una organización —estrategia, producto, decisiones, docs
@@ -40,7 +39,7 @@ export default function CompanyBrain() {
 
           <figure className="post-fig">
             <Image
-              src="/img/post-company-brain.jpg"
+              src="/img/post-company-brain.webp"
               alt="Ilustración en tinta: documentos dispersos entran a una máquina-cerebro que los conecta con hilos en una red de nodos"
               width={1400}
               height={933}
@@ -94,7 +93,11 @@ export default function CompanyBrain() {
           <h2>La estructura: un grafo híbrido, no una pila de chunks</h2>
           <p>
             El Company Brain guarda el conocimiento en <b>dos capas</b> sobre un grafo
-            (Neo4j), no en un índice plano de vectores:
+            (
+            <a href="https://neo4j.com/" target="_blank" rel="noopener">
+              Neo4j
+            </a>
+            ), no en un índice plano de vectores:
           </p>
           <ul>
             <li>
@@ -199,7 +202,7 @@ export default function CompanyBrain() {
 
           <figure className="post-fig">
             <Image
-              src="/img/company-brain-infografia.jpg"
+              src="/img/company-brain-infografia.webp"
               alt="Infografía 021: la inteligencia no está en juntar información, está en la estructura que la conecta. Un cajón de notas vs un cerebro-grafo con contexto, relaciones y evidencia."
               width={1024}
               height={1536}
@@ -228,6 +231,7 @@ export default function CompanyBrain() {
             </a>{" "}
             — esas conversaciones son las mejores.
           </p>
+          <AuthorBox />
         </div>
       </article>
     </main>

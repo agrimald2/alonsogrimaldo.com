@@ -571,6 +571,77 @@ article code {
   font-size: 16.5px;
 }
 
+.tldr {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--terra);
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin: 0 0 24px;
+}
+
+.tldr p {
+  margin: 0;
+  font-size: 16.5px;
+}
+
+.tldr .tldr-label {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.author-box {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 40px 0 0;
+}
+
+.author-box p {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 26px 0;
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+article th {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: left;
+}
+
+article th,
+article td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px 10px 0;
+  vertical-align: top;
+}
+
+article td b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
 .cta {
   display: inline-block;
   margin-top: 8px;

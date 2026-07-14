@@ -1,35 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getPost } from "@/lib/posts";
-import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
+import { JsonLd, postPageJsonLd } from "@/lib/jsonld";
+import { postMetadata } from "@/lib/meta";
+import { AuthorBox, PostMeta } from "@/lib/post-ui";
 
 const post = getPost("agente-proyeccion-electoral");
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/posts/${post.slug}` },
-  openGraph: {
-    type: "article",
-    publishedTime: post.date,
-    authors: ["Alonso Grimaldo"],
-    tags: post.tags,
-    title: post.title,
-    description: post.description,
-    url: `https://alonsogrimaldo.com/posts/${post.slug}`,
-  },
-};
+export const metadata: Metadata = postMetadata(post);
 
 export default function AgenteProyeccionElectoral() {
   return (
     <main>
       <article>
-        <JsonLd data={blogPostJsonLd(post)} />
+        <JsonLd data={postPageJsonLd(post)} />
         <div className="wrap">
-          <div className="meta">
-            {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
-          </div>
+          <PostMeta post={post} />
           <h1>Puse a mi agente a proyectar la segunda vuelta</h1>
+          <div className="tldr">
+            <span className="tldr-label">Respuesta corta</span>
+            <p>
+              Un agente scrapeó la API oficial de la ONPE región por región y
+              proyectó las actas pendientes de Perú 2026 zona por zona, no con
+              promedio nacional. Resultado: la elección que parecía cerrada se daba
+              vuelta. Modelo validado por dos vías independientes, en 15 minutos,
+              con página interactiva publicada.
+            </p>
+          </div>
           <p className="lead">
             Me mataba la ansiedad electoral. Con el <b>96.4% de actas contabilizadas</b>,
             Sánchez iba arriba por ~41 mil votos y todos daban la elección por cerrada.
@@ -39,7 +36,7 @@ export default function AgenteProyeccionElectoral() {
 
           <figure className="post-fig">
             <Image
-              src="/img/post-elecciones.jpg"
+              src="/img/post-elecciones.webp"
               alt="Resultados ONPE al 97.580% de actas: Roberto Sánchez (Juntos por el Perú) 50.040%, Keiko Fujimori (Fuerza Popular) 49.960% — diferencia de ~41 mil votos"
               width={1400}
               height={980}
@@ -68,8 +65,11 @@ export default function AgenteProyeccionElectoral() {
 
           <h2>El pedido</h2>
           <p>
-            Una sola instrucción: scrapear la <b>API oficial de la ONPE</b>, región por
-            región, y proyectar las actas pendientes. Nada de encuestas ni intuición —
+            Una sola instrucción: scrapear la{" "}
+            <a href="https://www.onpe.gob.pe/" target="_blank" rel="noopener">
+              <b>API oficial de la ONPE</b>
+            </a>
+            , región por región, y proyectar las actas pendientes. Nada de encuestas ni intuición —
             solo el padrón de lo que faltaba contar y cómo venía votando cada zona.
           </p>
 
@@ -143,6 +143,7 @@ export default function AgenteProyeccionElectoral() {
             </a>
             .
           </p>
+          <AuthorBox />
         </div>
       </article>
     </main>

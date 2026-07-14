@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { JsonLd, personJsonLd } from "@/lib/jsonld";
+import { JsonLd, personJsonLd, profilePageJsonLd, websiteJsonLd } from "@/lib/jsonld";
+import { pageMetadata } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Sobre mí",
   description:
     "Peruano radicado en Argentina hace 4 años. De digitalizar procesos con ERPs a construir agentes autónomos en 021, pasando por Francia, Alemania y una startup adquirida por Tiendanube. La historia, las decisiones y los errores.",
-  alternates: { canonical: "/sobre-mi" },
-};
+  path: "/sobre-mi",
+});
 
 export default function SobreMi() {
   return (
     <main>
       <article>
-        <JsonLd data={personJsonLd} />
+        <JsonLd data={[personJsonLd, websiteJsonLd, profilePageJsonLd]} />
         <div className="wrap">
           <div className="meta">sobre mí</div>
           <h1>La versión larga</h1>
@@ -54,8 +55,23 @@ export default function SobreMi() {
             Como CTO de <b>VICI</b> lideré la transformación de la empresa: de una
             plataforma tipo Rappi a un <b>asistente de ventas por WhatsApp con IA</b>{" "}
             para restaurantes. Fue mi primer gran &quot;apostar todo a la IA antes de
-            que fuera obvio&quot;. Funcionó: la startup fue <b>adquirida por
-            Tiendanube</b>, donde después seguí como AI Engineer Manager construyendo
+            que fuera obvio&quot;. Funcionó: la startup fue{" "}
+            <a
+              href="https://startupslatam.com/tiendanube-adquiere-vici-y-lanza-nuvem-chat-su-nueva-apuesta-en-comercio-conversacional-en-latam/"
+              target="_blank"
+              rel="noopener"
+            >
+              <b>adquirida por Tiendanube</b>
+            </a>{" "}
+            (
+            <a
+              href="https://latamlist.com/tiendanube-acquires-vici-and-launches-nuvem-chat/"
+              target="_blank"
+              rel="noopener"
+            >
+              cobertura en inglés
+            </a>
+            ), donde después seguí como AI Engineer Manager construyendo
             Chat Nube, el asistente para las tiendas de la plataforma.
           </p>
 

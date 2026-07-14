@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Proyectos",
   description:
     "Experimentos y proyectos de Alonso Grimaldo: el workflow de agentes autónomos ship-while-sleep y una proyección electoral interactiva hecha por un agente.",
-  alternates: { canonical: "/proyectos" },
-};
+  path: "/proyectos",
+});
 
 type Project = {
   name: string;

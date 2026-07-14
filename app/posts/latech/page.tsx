@@ -1,34 +1,31 @@
 import type { Metadata } from "next";
 import { getPost } from "@/lib/posts";
-import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
+import { JsonLd, postPageJsonLd } from "@/lib/jsonld";
+import { postMetadata } from "@/lib/meta";
+import { AuthorBox, PostMeta } from "@/lib/post-ui";
 
 const post = getPost("latech");
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/posts/${post.slug}` },
-  openGraph: {
-    type: "article",
-    publishedTime: post.date,
-    authors: ["Alonso Grimaldo"],
-    tags: post.tags,
-    title: post.title,
-    description: post.description,
-    url: `https://alonsogrimaldo.com/posts/${post.slug}`,
-  },
-};
+export const metadata: Metadata = postMetadata(post);
 
 export default function Latech() {
   return (
     <main>
       <article>
-        <JsonLd data={blogPostJsonLd(post)} />
+        <JsonLd data={postPageJsonLd(post)} />
         <div className="wrap">
-          <div className="meta">
-            {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
-          </div>
+          <PostMeta post={post} />
           <h1>Latech: IA aplicada para empresas que no nacieron digitales</h1>
+          <div className="tldr">
+            <span className="tldr-label">Respuesta corta</span>
+            <p>
+              Latech es una software factory de Lima que lleva IA y software a
+              medida a empresas que no nacieron digitales — Arca Continental
+              Lindley, Corporación Montana, Rimac Seguros, Pits. Tres modelos:
+              por proyecto, Tech Partner (desde $5,000 USD/mes) y Tu Startup. La
+              tesis: la IA no arregla un proceso roto, lo acelera.
+            </p>
+          </div>
           <p className="lead">
             En 2023 fundé{" "}
             <a href="https://latech.lat" target="_blank" rel="noopener">
@@ -160,6 +157,7 @@ export default function Latech() {
             </a>
             .
           </p>
+          <AuthorBox />
         </div>
       </article>
     </main>

@@ -1,36 +1,49 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { posts } from "@/lib/posts";
-import { JsonLd, blogPostJsonLd } from "@/lib/jsonld";
+import { getPost } from "@/lib/posts";
+import { JsonLd, faqJsonLd, postPageJsonLd } from "@/lib/jsonld";
+import { postMetadata } from "@/lib/meta";
+import { AuthorBox, PostMeta } from "@/lib/post-ui";
 
-const post = posts.find((p) => p.slug === "ship-while-sleep")!;
+const post = getPost("ship-while-sleep");
 const SITE = "https://ship.alonsogrimaldo.com/";
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/posts/${post.slug}` },
-  openGraph: {
-    type: "article",
-    publishedTime: post.date,
-    authors: ["Alonso Grimaldo"],
-    tags: post.tags,
-    title: post.title,
-    description: post.description,
-    url: `https://alonsogrimaldo.com/posts/${post.slug}`,
+export const metadata: Metadata = postMetadata(post);
+
+const faq = [
+  {
+    q: "¿Qué es el patrón ship while you sleep?",
+    a: "Un workflow de agentes autónomos en cuatro movimientos: el agente itera el objetivo y genera el spec; divide el trabajo en workspaces 100% aislados (un clon real por sub-tarea, bloque de puertos propio); un agente de E2E prueba en el navegador, encuentra la causa raíz y se auto-corrige hasta 3 corridas limpias seguidas; y volvés a capturas, feedback y fixes documentados — en general 99% prod-ready.",
   },
-};
+  {
+    q: "¿Qué tan detallado tiene que ser el prompt para un agente autónomo?",
+    a: "No es la longitud: es darle forma de verificar sus iteraciones. Un buen handoff es específico en el QUÉ, el POR QUÉ y los criterios de aceptación, y suelto en el CÓMO: síntoma observable, causa raíz verificada con archivo:línea, dirección del fix con constraints, archivos exactos y criterios testeables.",
+  },
+  {
+    q: "¿Cuándo está terminado el E2E de una tarea?",
+    a: "Recién con 3 conversaciones limpias seguidas en el navegador. Cualquier fix resetea la racha: si el agente tocó código, vuelve a probar desde cero.",
+  },
+];
 
 export default function ShipWhileSleep() {
   return (
     <main>
       <article>
-        <JsonLd data={blogPostJsonLd(post)} />
+        <JsonLd data={postPageJsonLd(post, [faqJsonLd(faq)])} />
         <div className="wrap">
-          <div className="meta">
-            {post.dateLabel} · {post.tags.join(" · ")} · {post.readingMin} min
-          </div>
+          <PostMeta post={post} />
           <h1>Ship while you sleep</h1>
+          <div className="tldr">
+            <span className="tldr-label">Respuesta corta</span>
+            <p>
+              Ship while you sleep es un patrón de agentes autónomos en cuatro
+              movimientos: el agente genera el spec con vos, divide el trabajo en
+              workspaces aislados (un clon real y un bloque de puertos por
+              sub-tarea), un agente de E2E encuentra la causa raíz y se
+              auto-corrige hasta 3 corridas limpias seguidas, y volvés a algo 99%
+              prod-ready con todo documentado.
+            </p>
+          </div>
           <p className="lead">
             Dejá objetivos grandes corriendo y volvé a algo <b>99% prod-ready</b>. Este
             es el patrón que usamos en 021 para trabajar con agentes autónomos — y las
@@ -39,7 +52,7 @@ export default function ShipWhileSleep() {
 
           <figure className="post-fig">
             <Image
-              src="/img/post-ship-while-sleep.jpg"
+              src="/img/post-ship-while-sleep.webp"
               alt="Ilustración en tinta: una persona duerme en una hamaca mientras tres pequeños robots trabajan aislados en sus escritorios; uno revisa con lupa, otro sella un visto bueno, otro acarrea papeles"
               width={1400}
               height={933}
@@ -181,11 +194,20 @@ reutilizá applyDiscount()
             agente <b>cierre su propio loop de calidad</b>.
           </p>
 
+          <h2>Preguntas frecuentes</h2>
+          {faq.map(({ q, a }) => (
+            <div key={q}>
+              <h3>{q}</h3>
+              <p>{a}</p>
+            </div>
+          ))}
+
           <p>
             <a className="cta" href={SITE} target="_blank" rel="noopener">
               Ver el patrón completo, interactivo →
             </a>
           </p>
+          <AuthorBox />
         </div>
       </article>
     </main>
